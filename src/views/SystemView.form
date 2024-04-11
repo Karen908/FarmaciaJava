@@ -3160,10 +3160,12 @@
                               <Component id="btn_registrar_Categoria" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txt_nombre_Categoria" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btn_modificar_Categoria" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel33" alignment="1" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txt_nombre_Categoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btn_modificar_Categoria" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btn_eliminar_Categoria" min="-2" pref="37" max="-2" attributes="0"/>
