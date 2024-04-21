@@ -20,7 +20,7 @@ public class ProductosDao {
 
     //Metodo de registro productos 
     public boolean registerProductosQuery(Productos productos) {
-        String query = "INSERT INTO productos(codigo,nombre,descripcion,precio,fecha_creacion,fecha_actualizacion,categoria_FK)"
+        String query = "INSERT INTO productos (categoria_FK, codigo, nombre, descripcion, precio, fecha_creacion, fecha_actualizacion)"
                 + " VALUE(?,?,?,?,?,?,?)";
         //Variable para obtener la fecha y la hora exacta de creacion y actualizacion 
 

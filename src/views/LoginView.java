@@ -34,15 +34,15 @@ public class LoginView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel3.setBackground(new java.awt.Color(0, 204, 204));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Gadugi", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Gadugi", 1, 28)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("INICIAR SESIÓN");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Javanese Text", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Contraseña: ");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
@@ -50,8 +50,9 @@ public class LoginView extends javax.swing.JFrame {
         txf_Usuario.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.add(txf_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 170, 30));
 
-        btn_Ingresar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_Ingresar.setForeground(new java.awt.Color(0, 0, 0));
+        btn_Ingresar.setBackground(new java.awt.Color(0, 102, 102));
+        btn_Ingresar.setFont(new java.awt.Font("Javanese Text", 1, 18)); // NOI18N
+        btn_Ingresar.setForeground(new java.awt.Color(255, 255, 255));
         btn_Ingresar.setText("INGRESAR");
         btn_Ingresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Ingresar.addActionListener(new java.awt.event.ActionListener() {
@@ -59,9 +60,9 @@ public class LoginView extends javax.swing.JFrame {
                 btn_IngresarActionPerformed(evt);
             }
         });
-        jPanel3.add(btn_Ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, -1, -1));
+        jPanel3.add(btn_Ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, -1, 40));
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Javanese Text", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Usuario: ");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));

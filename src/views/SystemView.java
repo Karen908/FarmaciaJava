@@ -180,9 +180,12 @@ public class SystemView extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         tabla_Categoria = new javax.swing.JTable();
         jPanel16 = new javax.swing.JPanel();
-        jLabel36 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         tabla_TotalCompras = new javax.swing.JTable();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel55 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jPanel17 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jLabel37 = new javax.swing.JLabel();
@@ -200,6 +203,34 @@ public class SystemView extends javax.swing.JFrame {
         txt_NuevaContra_Perfil = new javax.swing.JPasswordField();
         txt_ConfirmContra_Perfil = new javax.swing.JPasswordField();
         btn_modificar_Perfil = new javax.swing.JButton();
+        jPanel19 = new javax.swing.JPanel();
+        jPanel20 = new javax.swing.JPanel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        txtTotalPagar_venta = new javax.swing.JTextField();
+        txtCodigoP_venta = new javax.swing.JTextField();
+        txtNombreP_venta = new javax.swing.JTextField();
+        txtCedulaCli_venta = new javax.swing.JTextField();
+        txtCantidad_venta = new javax.swing.JTextField();
+        txt_IdVenta = new javax.swing.JTextField();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        jLabel53 = new javax.swing.JLabel();
+        txt_NombreCliente_venta = new javax.swing.JTextField();
+        txtStock_venta = new javax.swing.JTextField();
+        txtSubTotal_venta = new javax.swing.JTextField();
+        txtPrecio_venta = new javax.swing.JTextField();
+        btnAgregar_venta = new javax.swing.JButton();
+        btnVender_venta = new javax.swing.JButton();
+        btnEliminar_venta = new javax.swing.JButton();
+        btnNueva_venta = new javax.swing.JButton();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        tabla_Ventas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1685,11 +1716,6 @@ public class SystemView extends javax.swing.JFrame {
         jPanel16.setBackground(new java.awt.Color(0, 204, 204));
         jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel36.setFont(new java.awt.Font("Javanese Text", 1, 32)); // NOI18N
-        jLabel36.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel36.setText("Todas las compras realizadas ");
-        jPanel16.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
-
         tabla_TotalCompras.setBackground(new java.awt.Color(255, 255, 255));
         tabla_TotalCompras.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
         tabla_TotalCompras.setForeground(new java.awt.Color(0, 0, 0));
@@ -1698,7 +1724,7 @@ public class SystemView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Factura", "Proveedor", "Total", "Fecha de compra "
+                "Factura de compra", "Proveedor", "Total", "Fecha de venta"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -1711,7 +1737,40 @@ public class SystemView extends javax.swing.JFrame {
         });
         jScrollPane7.setViewportView(tabla_TotalCompras);
 
-        jPanel16.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 90, 930, 170));
+        jPanel16.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 890, 170));
+
+        jLabel54.setFont(new java.awt.Font("Javanese Text", 1, 32)); // NOI18N
+        jLabel54.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel54.setText("Todas las ventas realizadas ");
+        jPanel16.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, 50));
+
+        jLabel55.setFont(new java.awt.Font("Javanese Text", 1, 32)); // NOI18N
+        jLabel55.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel55.setText("Todas las compras realizadas ");
+        jPanel16.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, -1, -1));
+
+        jTable1.setBackground(new java.awt.Color(255, 255, 255));
+        jTable1.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(0, 0, 0));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Factura de venta", "Cliente", "Empleado", "Total", "Fecha de venta "
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane9.setViewportView(jTable1);
+
+        jPanel16.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 890, 190));
 
         jTabbedPane1.addTab("Reportes", jPanel16);
 
@@ -1886,6 +1945,294 @@ public class SystemView extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Perfil", jPanel17);
 
+        jPanel19.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel19.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel20.setBackground(new java.awt.Color(187, 187, 187));
+        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nueva venta ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Javanese Text", 1, 14), new java.awt.Color(0, 0, 0))); // NOI18N
+
+        jLabel44.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
+        jLabel44.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel44.setText("Nombre del producto:");
+
+        jLabel45.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
+        jLabel45.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel45.setText("Codigo del producto:");
+
+        jLabel46.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
+        jLabel46.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel46.setText("Cantidad :");
+
+        jLabel47.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
+        jLabel47.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel47.setText("Id:");
+
+        jLabel48.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
+        jLabel48.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel48.setText("Total a pagar :");
+
+        jLabel49.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
+        jLabel49.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel49.setText("Cedula del cliente:");
+
+        txtTotalPagar_venta.setBackground(new java.awt.Color(255, 255, 255));
+        txtTotalPagar_venta.setEnabled(false);
+        txtTotalPagar_venta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalPagar_ventaActionPerformed(evt);
+            }
+        });
+
+        txtCodigoP_venta.setBackground(new java.awt.Color(255, 255, 255));
+        txtCodigoP_venta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoP_ventaActionPerformed(evt);
+            }
+        });
+
+        txtNombreP_venta.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombreP_venta.setEnabled(false);
+        txtNombreP_venta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreP_ventaActionPerformed(evt);
+            }
+        });
+
+        txtCedulaCli_venta.setBackground(new java.awt.Color(255, 255, 255));
+        txtCedulaCli_venta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCedulaCli_ventaActionPerformed(evt);
+            }
+        });
+
+        txtCantidad_venta.setBackground(new java.awt.Color(255, 255, 255));
+        txtCantidad_venta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidad_ventaActionPerformed(evt);
+            }
+        });
+
+        txt_IdVenta.setEditable(false);
+        txt_IdVenta.setBackground(new java.awt.Color(255, 255, 255));
+        txt_IdVenta.setEnabled(false);
+        txt_IdVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_IdVentaActionPerformed(evt);
+            }
+        });
+
+        jLabel50.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
+        jLabel50.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel50.setText("Precio:");
+
+        jLabel51.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
+        jLabel51.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel51.setText("Subtotal:");
+
+        jLabel52.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
+        jLabel52.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel52.setText("Nombre del cliente:");
+
+        jLabel53.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
+        jLabel53.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel53.setText("Stock:");
+
+        txt_NombreCliente_venta.setBackground(new java.awt.Color(255, 255, 255));
+        txt_NombreCliente_venta.setEnabled(false);
+        txt_NombreCliente_venta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_NombreCliente_ventaActionPerformed(evt);
+            }
+        });
+
+        txtStock_venta.setBackground(new java.awt.Color(255, 255, 255));
+        txtStock_venta.setEnabled(false);
+        txtStock_venta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStock_ventaActionPerformed(evt);
+            }
+        });
+
+        txtSubTotal_venta.setBackground(new java.awt.Color(255, 255, 255));
+        txtSubTotal_venta.setEnabled(false);
+        txtSubTotal_venta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSubTotal_ventaActionPerformed(evt);
+            }
+        });
+
+        txtPrecio_venta.setBackground(new java.awt.Color(255, 255, 255));
+        txtPrecio_venta.setEnabled(false);
+        txtPrecio_venta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecio_ventaActionPerformed(evt);
+            }
+        });
+
+        btnAgregar_venta.setBackground(new java.awt.Color(0, 102, 102));
+        btnAgregar_venta.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
+        btnAgregar_venta.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar_venta.setText("Agregar");
+        btnAgregar_venta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregar_ventaActionPerformed(evt);
+            }
+        });
+
+        btnVender_venta.setBackground(new java.awt.Color(0, 102, 102));
+        btnVender_venta.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
+        btnVender_venta.setForeground(new java.awt.Color(255, 255, 255));
+        btnVender_venta.setText("Vender");
+        btnVender_venta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVender_ventaActionPerformed(evt);
+            }
+        });
+
+        btnEliminar_venta.setBackground(new java.awt.Color(0, 102, 102));
+        btnEliminar_venta.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
+        btnEliminar_venta.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar_venta.setText("Eliminar");
+        btnEliminar_venta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminar_ventaActionPerformed(evt);
+            }
+        });
+
+        btnNueva_venta.setBackground(new java.awt.Color(0, 102, 102));
+        btnNueva_venta.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
+        btnNueva_venta.setForeground(new java.awt.Color(255, 255, 255));
+        btnNueva_venta.setText("Nuevo");
+        btnNueva_venta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNueva_ventaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
+        jPanel20.setLayout(jPanel20Layout);
+        jPanel20Layout.setHorizontalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNombreP_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel20Layout.createSequentialGroup()
+                                .addComponent(txtCodigoP_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_IdVenta))))
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtCedulaCli_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCantidad_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtTotalPagar_venta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(48, 48, 48)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtPrecio_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtSubTotal_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtStock_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addComponent(jLabel52)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_NombreCliente_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAgregar_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVender_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNueva_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39))
+        );
+        jPanel20Layout.setVerticalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel45)
+                    .addComponent(jLabel47)
+                    .addComponent(txtCodigoP_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_IdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel50)
+                    .addComponent(txtPrecio_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregar_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel44)
+                    .addComponent(txtNombreP_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel51)
+                    .addComponent(txtSubTotal_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVender_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel46)
+                    .addComponent(txtCantidad_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel53)
+                    .addComponent(txtStock_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel49)
+                    .addComponent(txtCedulaCli_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel52)
+                    .addComponent(txt_NombreCliente_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNueva_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel48)
+                    .addComponent(txtTotalPagar_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel19.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 920, 300));
+
+        tabla_Ventas.setBackground(new java.awt.Color(255, 255, 255));
+        tabla_Ventas.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
+        tabla_Ventas.setForeground(new java.awt.Color(0, 0, 0));
+        tabla_Ventas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id producto", "Nombre", "Cantidad", "Precio de venta ", "SubTotal", "Nombre del cliente"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane8.setViewportView(tabla_Ventas);
+
+        jPanel19.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 920, 150));
+
+        jTabbedPane1.addTab("Ventas ", jPanel19);
+
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 1010, 580));
 
         pack();
@@ -1894,6 +2241,70 @@ public class SystemView extends javax.swing.JFrame {
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_salirActionPerformed
+
+    private void btn_modificar_PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificar_PerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_modificar_PerfilActionPerformed
+
+    private void txt_NuevaContra_PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NuevaContra_PerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_NuevaContra_PerfilActionPerformed
+
+    private void txt_correo_PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_correo_PerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_correo_PerfilActionPerformed
+
+    private void txt_ID_PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ID_PerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_ID_PerfilActionPerformed
+
+    private void txt_telefono_PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_telefono_PerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_telefono_PerfilActionPerformed
+
+    private void txt_direc_PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_direc_PerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_direc_PerfilActionPerformed
+
+    private void txt_nombre_PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombre_PerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nombre_PerfilActionPerformed
+
+    private void btn_modificar_CategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificar_CategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_modificar_CategoriaActionPerformed
+
+    private void btn_eliminar_CategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminar_CategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_eliminar_CategoriaActionPerformed
+
+    private void Buscar_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar_ProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Buscar_ProveedorActionPerformed
+
+    private void txt_direccion_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_direccion_ProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_direccion_ProveedorActionPerformed
+
+    private void txt_ID_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ID_ProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_ID_ProveedorActionPerformed
+
+    private void txt_direc_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_direc_ProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_direc_ProveedorActionPerformed
+
+    private void txt_correo_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_correo_ProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_correo_ProveedorActionPerformed
+
+    private void txt_telefono_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_telefono_ProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_telefono_ProveedorActionPerformed
+
+    private void txt_nombre_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombre_ProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nombre_ProveedorActionPerformed
 
     private void txt_buscar_EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscar_EmpleadoActionPerformed
         // TODO add your handling code here:
@@ -2007,69 +2418,61 @@ public class SystemView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_CodigoPActionPerformed
 
-    private void txt_nombre_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombre_ProveedorActionPerformed
+    private void txtTotalPagar_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalPagar_ventaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_nombre_ProveedorActionPerformed
+    }//GEN-LAST:event_txtTotalPagar_ventaActionPerformed
 
-    private void txt_telefono_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_telefono_ProveedorActionPerformed
+    private void txtCodigoP_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoP_ventaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_telefono_ProveedorActionPerformed
+    }//GEN-LAST:event_txtCodigoP_ventaActionPerformed
 
-    private void txt_correo_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_correo_ProveedorActionPerformed
+    private void txtNombreP_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreP_ventaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_correo_ProveedorActionPerformed
+    }//GEN-LAST:event_txtNombreP_ventaActionPerformed
 
-    private void txt_direc_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_direc_ProveedorActionPerformed
+    private void txtCedulaCli_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaCli_ventaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_direc_ProveedorActionPerformed
+    }//GEN-LAST:event_txtCedulaCli_ventaActionPerformed
 
-    private void txt_ID_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ID_ProveedorActionPerformed
+    private void txtCantidad_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidad_ventaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_ID_ProveedorActionPerformed
+    }//GEN-LAST:event_txtCantidad_ventaActionPerformed
 
-    private void txt_direccion_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_direccion_ProveedorActionPerformed
+    private void txt_IdVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_IdVentaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_direccion_ProveedorActionPerformed
+    }//GEN-LAST:event_txt_IdVentaActionPerformed
 
-    private void Buscar_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar_ProveedorActionPerformed
+    private void txt_NombreCliente_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NombreCliente_ventaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Buscar_ProveedorActionPerformed
+    }//GEN-LAST:event_txt_NombreCliente_ventaActionPerformed
 
-    private void btn_eliminar_CategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminar_CategoriaActionPerformed
+    private void txtStock_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStock_ventaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_eliminar_CategoriaActionPerformed
+    }//GEN-LAST:event_txtStock_ventaActionPerformed
 
-    private void btn_modificar_CategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificar_CategoriaActionPerformed
+    private void txtSubTotal_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubTotal_ventaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_modificar_CategoriaActionPerformed
+    }//GEN-LAST:event_txtSubTotal_ventaActionPerformed
 
-    private void txt_nombre_PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombre_PerfilActionPerformed
+    private void txtPrecio_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecio_ventaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_nombre_PerfilActionPerformed
+    }//GEN-LAST:event_txtPrecio_ventaActionPerformed
 
-    private void txt_direc_PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_direc_PerfilActionPerformed
+    private void btnAgregar_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar_ventaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_direc_PerfilActionPerformed
+    }//GEN-LAST:event_btnAgregar_ventaActionPerformed
 
-    private void txt_telefono_PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_telefono_PerfilActionPerformed
+    private void btnVender_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVender_ventaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_telefono_PerfilActionPerformed
+    }//GEN-LAST:event_btnVender_ventaActionPerformed
 
-    private void txt_ID_PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ID_PerfilActionPerformed
+    private void btnEliminar_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar_ventaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_ID_PerfilActionPerformed
+    }//GEN-LAST:event_btnEliminar_ventaActionPerformed
 
-    private void txt_correo_PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_correo_PerfilActionPerformed
+    private void btnNueva_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNueva_ventaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_correo_PerfilActionPerformed
-
-    private void txt_NuevaContra_PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NuevaContra_PerfilActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_NuevaContra_PerfilActionPerformed
-
-    private void btn_modificar_PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificar_PerfilActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_modificar_PerfilActionPerformed
+    }//GEN-LAST:event_btnNueva_ventaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2107,39 +2510,43 @@ public class SystemView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField Buscar_Proveedor;
+    private javax.swing.JTextField Buscar_Proveedor;
     private javax.swing.JTable Campras_Tabla;
     private javax.swing.JLabel Logo;
-    public javax.swing.JButton bnt_cancelar_Empleado;
-    public javax.swing.JButton bnt_eliminar_Empleado;
-    public javax.swing.JButton bnt_modificar_Empleado;
-    public javax.swing.JButton bnt_registro_Empleado;
+    private javax.swing.JButton bnt_cancelar_Empleado;
+    private javax.swing.JButton bnt_eliminar_Empleado;
+    private javax.swing.JButton bnt_modificar_Empleado;
+    private javax.swing.JButton bnt_registro_Empleado;
+    public javax.swing.JButton btnAgregar_venta;
+    public javax.swing.JButton btnEliminar_venta;
+    public javax.swing.JButton btnNueva_venta;
     private javax.swing.JButton btnRemover_Compra;
-    public javax.swing.JButton btn_Cancelar_Cliente;
+    public javax.swing.JButton btnVender_venta;
+    private javax.swing.JButton btn_Cancelar_Cliente;
     private javax.swing.JButton btn_Confirmar_Compra;
-    public javax.swing.JButton btn_Eliminar_Cliente;
-    public javax.swing.JButton btn_Modificar_Cliente;
+    private javax.swing.JButton btn_Eliminar_Cliente;
+    private javax.swing.JButton btn_Modificar_Cliente;
     private javax.swing.JButton btn_NuevaCompra;
     private javax.swing.JButton btn_RegistroP;
-    public javax.swing.JButton btn_Registro_Cliente;
+    private javax.swing.JButton btn_Registro_Cliente;
     private javax.swing.JButton btn_actualizarP;
     private javax.swing.JButton btn_agregar_Compra;
     private javax.swing.JButton btn_cancelarP;
-    public javax.swing.JButton btn_cancelar_Proveedor;
+    private javax.swing.JButton btn_cancelar_Proveedor;
     private javax.swing.JButton btn_eliminarP;
-    public javax.swing.JButton btn_eliminar_Categoria;
-    public javax.swing.JButton btn_eliminar_Proveedor;
-    public javax.swing.JButton btn_modificar_Categoria;
-    public javax.swing.JButton btn_modificar_Perfil;
-    public javax.swing.JButton btn_modificar_Proveedor;
+    private javax.swing.JButton btn_eliminar_Categoria;
+    private javax.swing.JButton btn_eliminar_Proveedor;
+    private javax.swing.JButton btn_modificar_Categoria;
+    private javax.swing.JButton btn_modificar_Perfil;
+    private javax.swing.JButton btn_modificar_Proveedor;
     private javax.swing.JButton btn_photo;
-    public javax.swing.JButton btn_registrar_Categoria;
-    public javax.swing.JButton btn_registrar_Proveedor;
+    private javax.swing.JButton btn_registrar_Categoria;
+    private javax.swing.JButton btn_registrar_Proveedor;
     private javax.swing.JButton btn_salir;
-    public javax.swing.JComboBox<Object> cmb_Categoria;
+    private javax.swing.JComboBox<Object> cmb_Categoria;
     private javax.swing.JComboBox<String> cmb_Proveedor_Compra;
-    public javax.swing.JComboBox<String> cmb_Rol;
-    public javax.swing.JComboBox<String> cmb_ciudad_Proveedor;
+    private javax.swing.JComboBox<String> cmb_Rol;
+    private javax.swing.JComboBox<String> cmb_ciudad_Proveedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2169,7 +2576,6 @@ public class SystemView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
@@ -2178,7 +2584,19 @@ public class SystemView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -2200,7 +2618,7 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JLabel jLabelSuppliers;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    public javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
@@ -2208,7 +2626,9 @@ public class SystemView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -2231,55 +2651,69 @@ public class SystemView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    public javax.swing.JTable product_tabla;
+    public javax.swing.JTable jTable1;
+    private javax.swing.JTable product_tabla;
     private javax.swing.JTable tabla_Categoria;
-    public javax.swing.JTable tabla_Clientes;
-    public javax.swing.JTable tabla_Empleados;
-    public javax.swing.JTable tabla_Prevedor;
-    public javax.swing.JTable tabla_TotalCompras;
+    private javax.swing.JTable tabla_Clientes;
+    private javax.swing.JTable tabla_Empleados;
+    private javax.swing.JTable tabla_Prevedor;
+    private javax.swing.JTable tabla_TotalCompras;
+    public javax.swing.JTable tabla_Ventas;
+    public javax.swing.JTextField txtCantidad_venta;
+    public javax.swing.JTextField txtCedulaCli_venta;
+    public javax.swing.JTextField txtCodigoP_venta;
+    public javax.swing.JTextField txtNombreP_venta;
+    public javax.swing.JTextField txtPrecio_venta;
+    public javax.swing.JTextField txtStock_venta;
+    public javax.swing.JTextField txtSubTotal_venta;
     private javax.swing.JTextField txtSubtotal_Compra;
-    public javax.swing.JTextField txt_BuscarP;
-    public javax.swing.JTextField txt_Buscar_Cliente;
+    public javax.swing.JTextField txtTotalPagar_venta;
+    private javax.swing.JTextField txt_BuscarP;
+    private javax.swing.JTextField txt_Buscar_Cliente;
     private javax.swing.JTextField txt_Cantidad_Compra;
     private javax.swing.JTextField txt_CodigoCompra;
-    public javax.swing.JTextField txt_CodigoP;
-    public javax.swing.JPasswordField txt_ConfirmContra_Perfil;
-    public javax.swing.JTextField txt_DescripcionP;
-    public javax.swing.JTextField txt_ID_Categoria;
-    public javax.swing.JTextField txt_ID_Cliente;
+    private javax.swing.JTextField txt_CodigoP;
+    private javax.swing.JPasswordField txt_ConfirmContra_Perfil;
+    private javax.swing.JTextField txt_DescripcionP;
+    private javax.swing.JTextField txt_ID_Categoria;
+    private javax.swing.JTextField txt_ID_Cliente;
     private javax.swing.JTextField txt_ID_Compra;
-    public javax.swing.JTextField txt_ID_Empleado;
-    public javax.swing.JTextField txt_ID_Perfil;
-    public javax.swing.JTextField txt_ID_Proveedor;
-    public javax.swing.JTextField txt_NombreP;
-    public javax.swing.JTextField txt_Nombre_Cliente;
+    private javax.swing.JTextField txt_ID_Empleado;
+    private javax.swing.JTextField txt_ID_Perfil;
+    private javax.swing.JTextField txt_ID_Proveedor;
+    public javax.swing.JTextField txt_IdVenta;
+    public javax.swing.JTextField txt_NombreCliente_venta;
+    private javax.swing.JTextField txt_NombreP;
+    private javax.swing.JTextField txt_Nombre_Cliente;
     private javax.swing.JTextField txt_Nombre_Compra;
-    public javax.swing.JPasswordField txt_NuevaContra_Perfil;
+    private javax.swing.JPasswordField txt_NuevaContra_Perfil;
     private javax.swing.JTextField txt_Pagar_Compra;
-    public javax.swing.JTextField txt_PrecioV;
+    private javax.swing.JTextField txt_PrecioV;
     private javax.swing.JTextField txt_Precio_Compra;
-    public javax.swing.JTextField txt_ProductoID;
+    private javax.swing.JTextField txt_ProductoID;
     private javax.swing.JTextField txt_buscar_Categoria;
-    public javax.swing.JTextField txt_buscar_Empleado;
-    public javax.swing.JPasswordField txt_contra_Empleado;
-    public javax.swing.JTextField txt_correo_Cliente;
-    public javax.swing.JTextField txt_correo_Empleado;
-    public javax.swing.JTextField txt_correo_Perfil;
-    public javax.swing.JTextField txt_correo_Proveedor;
-    public javax.swing.JTextField txt_direc_Cliente;
-    public javax.swing.JTextField txt_direc_Empleado;
-    public javax.swing.JTextField txt_direc_Perfil;
-    public javax.swing.JTextField txt_direc_Proveedor;
-    public javax.swing.JTextField txt_direccion_Proveedor;
-    public javax.swing.JTextField txt_nombre_Categoria;
-    public javax.swing.JTextField txt_nombre_Empelado;
-    public javax.swing.JTextField txt_nombre_Perfil;
-    public javax.swing.JTextField txt_nombre_Proveedor;
-    public javax.swing.JTextField txt_telefono_Cliente;
-    public javax.swing.JTextField txt_telefono_Empleado;
-    public javax.swing.JTextField txt_telefono_Perfil;
-    public javax.swing.JTextField txt_telefono_Proveedor;
-    public javax.swing.JTextField txt_user_Empleado;
+    private javax.swing.JTextField txt_buscar_Empleado;
+    private javax.swing.JPasswordField txt_contra_Empleado;
+    private javax.swing.JTextField txt_correo_Cliente;
+    private javax.swing.JTextField txt_correo_Empleado;
+    private javax.swing.JTextField txt_correo_Perfil;
+    private javax.swing.JTextField txt_correo_Proveedor;
+    private javax.swing.JTextField txt_direc_Cliente;
+    private javax.swing.JTextField txt_direc_Empleado;
+    private javax.swing.JTextField txt_direc_Perfil;
+    private javax.swing.JTextField txt_direc_Proveedor;
+    private javax.swing.JTextField txt_direccion_Proveedor;
+    private javax.swing.JTextField txt_nombre_Categoria;
+    private javax.swing.JTextField txt_nombre_Empelado;
+    private javax.swing.JTextField txt_nombre_Perfil;
+    private javax.swing.JTextField txt_nombre_Proveedor;
+    private javax.swing.JTextField txt_telefono_Cliente;
+    private javax.swing.JTextField txt_telefono_Empleado;
+    private javax.swing.JTextField txt_telefono_Perfil;
+    private javax.swing.JTextField txt_telefono_Proveedor;
+    private javax.swing.JTextField txt_user_Empleado;
     // End of variables declaration//GEN-END:variables
 }

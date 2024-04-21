@@ -42,8 +42,7 @@ public class CamprasDao {
     //Metodo para registrar detalles de la compra 
     public boolean registarDetallesCompraQuery(int idDetalles_compra, double precio_compra, int cantidad_compra, double total_compra, int productoID_FK) {
 
-        String query = "insert into detalles_compra (idDetalles_compra,precio_compra,cantidad_compra,total_compra,fecha_compra,productoID_FK ) "
-                + "values(?,?,?,?,?,?)";
+        String query = "INSERT INTO detalles_compra (productoID_FK, idDetalles_compra, precio_compra, cantidad_compra, total_compra, fecha_compra) VALUES (?, ?, ?, ?, ?, ?)";
         Timestamp datetime = new Timestamp(new Date().getTime());
 
         try {
