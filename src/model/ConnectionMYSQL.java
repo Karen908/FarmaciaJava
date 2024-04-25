@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class ConnectionMYSQL {
     private String database_name = "farmacia";
     private String user= "root";
-    private String password = " password123";
+    private String password = "administrador";
     private String url ="jdbc:mysql://localhost:3306/"+database_name;
     //variable para conectarnos a la base de datos  
     Connection conn= null;

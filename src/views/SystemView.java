@@ -2,9 +2,16 @@
 package views;
 
 import controlador.Controller;
+import controlador.EmpleadosController;
+import model.Empleados;
+import model.EmpleadosDao;
 
 public class SystemView extends javax.swing.JFrame {
 
+    //instanciamos los objetos que vamos a usar en esta vista 
+    Empleados empleados = new Empleados();
+    EmpleadosDao empleadosDao = new EmpleadosDao();
+    
     public SystemView() {
         initComponents();
         //tamaño de la ventana 
@@ -20,6 +27,8 @@ public class SystemView extends javax.swing.JFrame {
         Controller controler = new Controller(this);
         //Para mostra los cambios realizados 
         this.repaint();
+        //Controlador de empleados
+        EmpleadosController empleados_controller = new EmpleadosController(empleados, empleadosDao, this);        
     }
 
     @SuppressWarnings("unchecked")
@@ -127,12 +136,12 @@ public class SystemView extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         txt_direc_Empleado = new javax.swing.JTextField();
         txt_user_Empleado = new javax.swing.JTextField();
-        txt_nombre_Empelado = new javax.swing.JTextField();
+        txt_nombre_Empleado = new javax.swing.JTextField();
         txt_ID_Empleado = new javax.swing.JTextField();
         txt_telefono_Empleado = new javax.swing.JTextField();
         txt_correo_Empleado = new javax.swing.JTextField();
         cmb_Rol = new javax.swing.JComboBox<>();
-        bnt_registro_Empleado = new javax.swing.JButton();
+        btn_registro_Empleado = new javax.swing.JButton();
         txt_contra_Empleado = new javax.swing.JPasswordField();
         bnt_eliminar_Empleado = new javax.swing.JButton();
         bnt_cancelar_Empleado = new javax.swing.JButton();
@@ -1170,10 +1179,10 @@ public class SystemView extends javax.swing.JFrame {
             }
         });
 
-        txt_nombre_Empelado.setBackground(new java.awt.Color(255, 255, 255));
-        txt_nombre_Empelado.addActionListener(new java.awt.event.ActionListener() {
+        txt_nombre_Empleado.setBackground(new java.awt.Color(255, 255, 255));
+        txt_nombre_Empleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_nombre_EmpeladoActionPerformed(evt);
+                txt_nombre_EmpleadoActionPerformed(evt);
             }
         });
 
@@ -1203,10 +1212,10 @@ public class SystemView extends javax.swing.JFrame {
         cmb_Rol.setForeground(new java.awt.Color(0, 0, 0));
         cmb_Rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Auxiliar" }));
 
-        bnt_registro_Empleado.setBackground(new java.awt.Color(0, 102, 102));
-        bnt_registro_Empleado.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
-        bnt_registro_Empleado.setForeground(new java.awt.Color(255, 255, 255));
-        bnt_registro_Empleado.setText("Registrar");
+        btn_registro_Empleado.setBackground(new java.awt.Color(0, 102, 102));
+        btn_registro_Empleado.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
+        btn_registro_Empleado.setForeground(new java.awt.Color(255, 255, 255));
+        btn_registro_Empleado.setText("Registrar");
 
         txt_contra_Empleado.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1241,7 +1250,7 @@ public class SystemView extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
                                 .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txt_nombre_Empelado, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txt_nombre_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel14Layout.createSequentialGroup()
                                 .addComponent(jLabel21)
                                 .addGap(55, 55, 55)
@@ -1275,7 +1284,7 @@ public class SystemView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bnt_modificar_Empleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bnt_registro_Empleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_registro_Empleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bnt_eliminar_Empleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bnt_cancelar_Empleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56))
@@ -1285,7 +1294,7 @@ public class SystemView extends javax.swing.JFrame {
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
-                        .addComponent(bnt_registro_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_registro_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(bnt_modificar_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
@@ -1298,7 +1307,7 @@ public class SystemView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel23)
-                            .addComponent(txt_nombre_Empelado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_nombre_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel20)
                             .addComponent(txt_telefono_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2239,7 +2248,11 @@ public class SystemView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
-        // TODO add your handling code here:
+        if (evt.getSource()==btn_salir) {
+            dispose(); //Para que se cierre
+            LoginView login = new LoginView();//para que deje la pantalla del login
+            login.setVisible(true);
+        }
     }//GEN-LAST:event_btn_salirActionPerformed
 
     private void btn_modificar_PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificar_PerfilActionPerformed
@@ -2322,9 +2335,9 @@ public class SystemView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_ID_EmpleadoActionPerformed
 
-    private void txt_nombre_EmpeladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombre_EmpeladoActionPerformed
+    private void txt_nombre_EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombre_EmpleadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_nombre_EmpeladoActionPerformed
+    }//GEN-LAST:event_txt_nombre_EmpleadoActionPerformed
 
     private void txt_user_EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_user_EmpleadoActionPerformed
         // TODO add your handling code here:
@@ -2510,43 +2523,43 @@ public class SystemView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Buscar_Proveedor;
+    public javax.swing.JTextField Buscar_Proveedor;
     private javax.swing.JTable Campras_Tabla;
     private javax.swing.JLabel Logo;
-    private javax.swing.JButton bnt_cancelar_Empleado;
-    private javax.swing.JButton bnt_eliminar_Empleado;
-    private javax.swing.JButton bnt_modificar_Empleado;
-    private javax.swing.JButton bnt_registro_Empleado;
+    public javax.swing.JButton bnt_cancelar_Empleado;
+    public javax.swing.JButton bnt_eliminar_Empleado;
+    public javax.swing.JButton bnt_modificar_Empleado;
     public javax.swing.JButton btnAgregar_venta;
     public javax.swing.JButton btnEliminar_venta;
     public javax.swing.JButton btnNueva_venta;
     private javax.swing.JButton btnRemover_Compra;
     public javax.swing.JButton btnVender_venta;
-    private javax.swing.JButton btn_Cancelar_Cliente;
+    public javax.swing.JButton btn_Cancelar_Cliente;
     private javax.swing.JButton btn_Confirmar_Compra;
-    private javax.swing.JButton btn_Eliminar_Cliente;
-    private javax.swing.JButton btn_Modificar_Cliente;
+    public javax.swing.JButton btn_Eliminar_Cliente;
+    public javax.swing.JButton btn_Modificar_Cliente;
     private javax.swing.JButton btn_NuevaCompra;
     private javax.swing.JButton btn_RegistroP;
-    private javax.swing.JButton btn_Registro_Cliente;
+    public javax.swing.JButton btn_Registro_Cliente;
     private javax.swing.JButton btn_actualizarP;
     private javax.swing.JButton btn_agregar_Compra;
     private javax.swing.JButton btn_cancelarP;
-    private javax.swing.JButton btn_cancelar_Proveedor;
+    public javax.swing.JButton btn_cancelar_Proveedor;
     private javax.swing.JButton btn_eliminarP;
-    private javax.swing.JButton btn_eliminar_Categoria;
-    private javax.swing.JButton btn_eliminar_Proveedor;
-    private javax.swing.JButton btn_modificar_Categoria;
-    private javax.swing.JButton btn_modificar_Perfil;
-    private javax.swing.JButton btn_modificar_Proveedor;
+    public javax.swing.JButton btn_eliminar_Categoria;
+    public javax.swing.JButton btn_eliminar_Proveedor;
+    public javax.swing.JButton btn_modificar_Categoria;
+    public javax.swing.JButton btn_modificar_Perfil;
+    public javax.swing.JButton btn_modificar_Proveedor;
     private javax.swing.JButton btn_photo;
-    private javax.swing.JButton btn_registrar_Categoria;
-    private javax.swing.JButton btn_registrar_Proveedor;
+    public javax.swing.JButton btn_registrar_Categoria;
+    public javax.swing.JButton btn_registrar_Proveedor;
+    public javax.swing.JButton btn_registro_Empleado;
     private javax.swing.JButton btn_salir;
-    private javax.swing.JComboBox<Object> cmb_Categoria;
+    public javax.swing.JComboBox<Object> cmb_Categoria;
     private javax.swing.JComboBox<String> cmb_Proveedor_Compra;
-    private javax.swing.JComboBox<String> cmb_Rol;
-    private javax.swing.JComboBox<String> cmb_ciudad_Proveedor;
+    public javax.swing.JComboBox<String> cmb_Rol;
+    public javax.swing.JComboBox<String> cmb_ciudad_Proveedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2618,7 +2631,7 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JLabel jLabelSuppliers;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
+    public javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
@@ -2655,12 +2668,12 @@ public class SystemView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JTable jTable1;
-    private javax.swing.JTable product_tabla;
+    public javax.swing.JTable product_tabla;
     private javax.swing.JTable tabla_Categoria;
-    private javax.swing.JTable tabla_Clientes;
-    private javax.swing.JTable tabla_Empleados;
-    private javax.swing.JTable tabla_Prevedor;
-    private javax.swing.JTable tabla_TotalCompras;
+    public javax.swing.JTable tabla_Clientes;
+    public javax.swing.JTable tabla_Empleados;
+    public javax.swing.JTable tabla_Prevedor;
+    public javax.swing.JTable tabla_TotalCompras;
     public javax.swing.JTable tabla_Ventas;
     public javax.swing.JTextField txtCantidad_venta;
     public javax.swing.JTextField txtCedulaCli_venta;
@@ -2671,49 +2684,49 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JTextField txtSubTotal_venta;
     private javax.swing.JTextField txtSubtotal_Compra;
     public javax.swing.JTextField txtTotalPagar_venta;
-    private javax.swing.JTextField txt_BuscarP;
-    private javax.swing.JTextField txt_Buscar_Cliente;
+    public javax.swing.JTextField txt_BuscarP;
+    public javax.swing.JTextField txt_Buscar_Cliente;
     private javax.swing.JTextField txt_Cantidad_Compra;
     private javax.swing.JTextField txt_CodigoCompra;
-    private javax.swing.JTextField txt_CodigoP;
-    private javax.swing.JPasswordField txt_ConfirmContra_Perfil;
-    private javax.swing.JTextField txt_DescripcionP;
-    private javax.swing.JTextField txt_ID_Categoria;
-    private javax.swing.JTextField txt_ID_Cliente;
+    public javax.swing.JTextField txt_CodigoP;
+    public javax.swing.JPasswordField txt_ConfirmContra_Perfil;
+    public javax.swing.JTextField txt_DescripcionP;
+    public javax.swing.JTextField txt_ID_Categoria;
+    public javax.swing.JTextField txt_ID_Cliente;
     private javax.swing.JTextField txt_ID_Compra;
-    private javax.swing.JTextField txt_ID_Empleado;
-    private javax.swing.JTextField txt_ID_Perfil;
-    private javax.swing.JTextField txt_ID_Proveedor;
+    public javax.swing.JTextField txt_ID_Empleado;
+    public javax.swing.JTextField txt_ID_Perfil;
+    public javax.swing.JTextField txt_ID_Proveedor;
     public javax.swing.JTextField txt_IdVenta;
     public javax.swing.JTextField txt_NombreCliente_venta;
-    private javax.swing.JTextField txt_NombreP;
-    private javax.swing.JTextField txt_Nombre_Cliente;
+    public javax.swing.JTextField txt_NombreP;
+    public javax.swing.JTextField txt_Nombre_Cliente;
     private javax.swing.JTextField txt_Nombre_Compra;
-    private javax.swing.JPasswordField txt_NuevaContra_Perfil;
+    public javax.swing.JPasswordField txt_NuevaContra_Perfil;
     private javax.swing.JTextField txt_Pagar_Compra;
-    private javax.swing.JTextField txt_PrecioV;
+    public javax.swing.JTextField txt_PrecioV;
     private javax.swing.JTextField txt_Precio_Compra;
-    private javax.swing.JTextField txt_ProductoID;
+    public javax.swing.JTextField txt_ProductoID;
     private javax.swing.JTextField txt_buscar_Categoria;
-    private javax.swing.JTextField txt_buscar_Empleado;
-    private javax.swing.JPasswordField txt_contra_Empleado;
-    private javax.swing.JTextField txt_correo_Cliente;
-    private javax.swing.JTextField txt_correo_Empleado;
-    private javax.swing.JTextField txt_correo_Perfil;
-    private javax.swing.JTextField txt_correo_Proveedor;
-    private javax.swing.JTextField txt_direc_Cliente;
-    private javax.swing.JTextField txt_direc_Empleado;
-    private javax.swing.JTextField txt_direc_Perfil;
-    private javax.swing.JTextField txt_direc_Proveedor;
-    private javax.swing.JTextField txt_direccion_Proveedor;
-    private javax.swing.JTextField txt_nombre_Categoria;
-    private javax.swing.JTextField txt_nombre_Empelado;
-    private javax.swing.JTextField txt_nombre_Perfil;
-    private javax.swing.JTextField txt_nombre_Proveedor;
-    private javax.swing.JTextField txt_telefono_Cliente;
-    private javax.swing.JTextField txt_telefono_Empleado;
-    private javax.swing.JTextField txt_telefono_Perfil;
-    private javax.swing.JTextField txt_telefono_Proveedor;
-    private javax.swing.JTextField txt_user_Empleado;
+    public javax.swing.JTextField txt_buscar_Empleado;
+    public javax.swing.JPasswordField txt_contra_Empleado;
+    public javax.swing.JTextField txt_correo_Cliente;
+    public javax.swing.JTextField txt_correo_Empleado;
+    public javax.swing.JTextField txt_correo_Perfil;
+    public javax.swing.JTextField txt_correo_Proveedor;
+    public javax.swing.JTextField txt_direc_Cliente;
+    public javax.swing.JTextField txt_direc_Empleado;
+    public javax.swing.JTextField txt_direc_Perfil;
+    public javax.swing.JTextField txt_direc_Proveedor;
+    public javax.swing.JTextField txt_direccion_Proveedor;
+    public javax.swing.JTextField txt_nombre_Categoria;
+    public javax.swing.JTextField txt_nombre_Empleado;
+    public javax.swing.JTextField txt_nombre_Perfil;
+    public javax.swing.JTextField txt_nombre_Proveedor;
+    public javax.swing.JTextField txt_telefono_Cliente;
+    public javax.swing.JTextField txt_telefono_Empleado;
+    public javax.swing.JTextField txt_telefono_Perfil;
+    public javax.swing.JTextField txt_telefono_Proveedor;
+    public javax.swing.JTextField txt_user_Empleado;
     // End of variables declaration//GEN-END:variables
 }

@@ -2053,7 +2053,7 @@
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="jLabel23" min="-2" pref="141" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="txt_nombre_Empelado" min="-2" pref="180" max="-2" attributes="0"/>
+                                          <Component id="txt_nombre_Empleado" min="-2" pref="180" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
@@ -2100,7 +2100,7 @@
                           <EmptySpace pref="70" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="bnt_modificar_Empleado" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
-                              <Component id="bnt_registro_Empleado" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
+                              <Component id="btn_registro_Empleado" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
                               <Component id="bnt_eliminar_Empleado" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
                               <Component id="bnt_cancelar_Empleado" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
                           </Group>
@@ -2113,7 +2113,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="bnt_registro_Empleado" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="btn_registro_Empleado" min="-2" pref="33" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="bnt_modificar_Empleado" pref="0" max="32767" attributes="0"/>
                               </Group>
@@ -2128,7 +2128,7 @@
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_nombre_Empelado" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_nombre_Empleado" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txt_telefono_Empleado" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -2263,14 +2263,14 @@
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txt_nombre_Empelado">
+                <Component class="javax.swing.JTextField" name="txt_nombre_Empleado">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_nombre_EmpeladoActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_nombre_EmpleadoActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -2338,7 +2338,7 @@
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="bnt_registro_Empleado">
+                <Component class="javax.swing.JButton" name="btn_registro_Empleado">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="66" red="0" type="rgb"/>

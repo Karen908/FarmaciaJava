@@ -1,10 +1,19 @@
 
 package views;
 
-public class LoginView extends javax.swing.JFrame {
+import controlador.LoginController;
+import model.Empleados;
+import model.EmpleadosDao;
 
+public class LoginView extends javax.swing.JFrame {
+    
+    //instanciamos empleados 
+    Empleados empleados = new Empleados();
+    EmpleadosDao empleadosDao = new EmpleadosDao();
     public LoginView() {
         initComponents();
+        //Llamamos al controlador del login 
+        LoginController empleado_login = new LoginController(empleados, empleadosDao, this);
         //Medidas exactas que va a tener esa ventana 
         setSize(930,395);
         //Que no pueda redimencionar esa interfaz 
@@ -27,7 +36,7 @@ public class LoginView extends javax.swing.JFrame {
         txf_Usuario = new javax.swing.JTextField();
         btn_Ingresar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jf_Contraseña = new javax.swing.JPasswordField();
+        txt_Contrasena = new javax.swing.JPasswordField();
         jPanel1 = new javax.swing.JPanel();
         img_doctor = new javax.swing.JLabel();
 
@@ -48,6 +57,11 @@ public class LoginView extends javax.swing.JFrame {
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
 
         txf_Usuario.setBackground(new java.awt.Color(255, 255, 255));
+        txf_Usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txf_UsuarioActionPerformed(evt);
+            }
+        });
         jPanel3.add(txf_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 170, 30));
 
         btn_Ingresar.setBackground(new java.awt.Color(0, 102, 102));
@@ -67,13 +81,13 @@ public class LoginView extends javax.swing.JFrame {
         jLabel3.setText("Usuario: ");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
 
-        jf_Contraseña.setBackground(new java.awt.Color(255, 255, 255));
-        jf_Contraseña.addActionListener(new java.awt.event.ActionListener() {
+        txt_Contrasena.setBackground(new java.awt.Color(255, 255, 255));
+        txt_Contrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jf_ContraseñaActionPerformed(evt);
+                txt_ContrasenaActionPerformed(evt);
             }
         });
-        jPanel3.add(jf_Contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 170, 30));
+        jPanel3.add(txt_Contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 170, 30));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 500, 360));
 
@@ -88,13 +102,17 @@ public class LoginView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jf_ContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jf_ContraseñaActionPerformed
+    private void txt_ContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ContrasenaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jf_ContraseñaActionPerformed
+    }//GEN-LAST:event_txt_ContrasenaActionPerformed
 
     private void btn_IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_IngresarActionPerformed
+
+    private void txf_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_UsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txf_UsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,14 +145,14 @@ public class LoginView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_Ingresar;
+    public javax.swing.JButton btn_Ingresar;
     private javax.swing.JLabel img_doctor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField jf_Contraseña;
-    private javax.swing.JTextField txf_Usuario;
+    public javax.swing.JTextField txf_Usuario;
+    public javax.swing.JPasswordField txt_Contrasena;
     // End of variables declaration//GEN-END:variables
 }
