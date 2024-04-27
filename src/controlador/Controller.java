@@ -16,7 +16,7 @@ public class Controller implements MouseListener{
         //le decimos que busque en esta vista los jLabels
         this.views.jLabelProduct.addMouseListener(this);
         this.views.jLabelPurchases.addMouseListener(this);
-        this.views.jLabelCustomers.addMouseListener(this);
+        this.views.jLabelClientes.addMouseListener(this);
         this.views.jLabelEmployers.addMouseListener(this);
         this.views.jLabelSuppliers.addMouseListener(this);
         this.views.jLabelCategories.addMouseListener(this);
@@ -46,7 +46,7 @@ public class Controller implements MouseListener{
             views.jPanelProduct.setBackground(new Color(152, 202, 63));
         } else if (e.getSource() == views.jLabelPurchases) {
             views.jPanelPurchases.setBackground(new Color(152, 202, 63));
-        } else if (e.getSource() == views.jLabelCustomers) {
+        } else if (e.getSource() == views.jLabelClientes) {
             views.jPanelCustomers.setBackground(new Color(152, 202, 63));
         } else if (e.getSource() == views.jLabelEmployers) {
             views.jPanelEmployers.setBackground(new Color(152, 202, 63));
@@ -68,7 +68,7 @@ public class Controller implements MouseListener{
             views.jPanelProduct.setBackground(new Color(255,255,255));
         } else if (e.getSource() == views.jLabelPurchases) {
             views.jPanelPurchases.setBackground(new Color(255,255,255));
-        } else if (e.getSource() == views.jLabelCustomers) {
+        } else if (e.getSource() == views.jLabelClientes) {
             views.jPanelCustomers.setBackground(new Color(255,255,255));
         } else if (e.getSource() == views.jLabelEmployers) {
             views.jPanelEmployers.setBackground(new Color(255,255,255));
