@@ -4,6 +4,11 @@ package controlador;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import static model.EmpleadosDao.direccion;
+import static model.EmpleadosDao.email;
+import static model.EmpleadosDao.id_empleados;
+import static model.EmpleadosDao.nombreCompleto;
+import static model.EmpleadosDao.telefono;
 import views.SystemView;
 
 public class Controller implements MouseListener{
@@ -22,8 +27,15 @@ public class Controller implements MouseListener{
         this.views.jLabelCategories.addMouseListener(this);
         this.views.jLabelReports.addMouseListener(this);
         this.views.jLabelSettings.addMouseListener(this);
-
-
+        perfil();
+    }
+    //Asignar el perfil al usuario
+    public void perfil(){
+        this.views.txt_ID_Perfil.setText(""+id_empleados);
+        this.views.txt_nombre_Perfil.setText(""+nombreCompleto);
+        this.views.txt_direc_Perfil.setText(""+direccion);
+        this.views.txt_telefono_Perfil.setText(""+telefono);
+        this.views.txt_correo_Perfil.setText(""+email);
     }
     
     //metodos del mouse

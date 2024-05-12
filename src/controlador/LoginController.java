@@ -27,11 +27,15 @@ public class LoginController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         //obtenemos los datos de la vista 
         //usamos en metodo trim, para eliminar los espacios en blanco 
-        String nombreUsuario = login_view.txf_Usuario.getText().trim();
-        String password = String.valueOf(login_view.txt_Contrasena.getPassword());
+           System.out.println("Acción realizada: " + e.getActionCommand());
+
         //revisamos si el usuario hizo click en el botton ingresar
-        
+       
         if(e.getSource()==login_view.btn_Ingresar){
+             String nombreUsuario = login_view.txf_Usuario.getText().trim();
+        String password = String.valueOf(login_view.txt_Contrasena.getPassword());
+        System.out.println("Nombre de usuario: " + nombreUsuario);
+        System.out.println("Contraseña: " + password);
             //validamos que los campos no esten vacios 
             if (!nombreUsuario.equals("")|| !password.equals("")) {
             //pasamos los parametros al metodo login 

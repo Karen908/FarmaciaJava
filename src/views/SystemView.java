@@ -4,10 +4,15 @@ package views;
 import controlador.ClientesController;
 import controlador.Controller;
 import controlador.EmpleadosController;
+import controlador.ProveedoresController;
 import model.Clientes;
 import model.ClientesDao;
 import model.Empleados;
 import model.EmpleadosDao;
+import static model.EmpleadosDao.nombreCompleto;
+import static model.EmpleadosDao.rol_usuario;
+import model.Proveedores;
+import model.ProveedoresDao;
 
 public class SystemView extends javax.swing.JFrame {
 
@@ -17,30 +22,35 @@ public class SystemView extends javax.swing.JFrame {
     //instanciamos clientes 
     Clientes clientes = new Clientes();
     ClientesDao clientesDao = new ClientesDao();
+    //instanciamos proveedores
+    Proveedores proveedores = new Proveedores();
+    ProveedoresDao proveedoresDao = new ProveedoresDao();
 
     public SystemView() {
         initComponents();
-        //tamaño de la ventana 
-        setSize(1208, 680);
-        //Para que el usuario no pueda agrandar ni modificar la ventana 
-        setResizable(false);
-        //Panel de administracion 
-        setTitle("Ponel de administracion");
-        //Para que quede centrado
-        setLocationRelativeTo(null);
-
+        setSize(1208, 680);           //tamaño de la ventana 
+        setResizable(false);             //Para que el usuario no pueda agrandar ni modificar la ventana 
+        setLocationRelativeTo(null);           //Para que quede centrado
+        tituloInterfaz(); //Metodo para mostrar nombre y rol de usuario
         //instanciamos el controlador (this, hace referencia a la vista)
         Controller controler = new Controller(this);
-        //Para mostra los cambios realizados 
-        this.repaint();
+        this.repaint();  //Para mostra los cambios realizados 
 
         //Controlador de empleados
         EmpleadosController empleados_controller = new EmpleadosController(empleados, empleadosDao, this);
         empleados_controller.listarTodosEmpleados();
-
         //Controlador de clientes 
         ClientesController clientesController = new ClientesController(clientes, clientesDao, this);
         clientesController.listarTodos_Clientes();
+        //Controlador proveedores 
+        ProveedoresController proveedoresController = new ProveedoresController(proveedores, proveedoresDao, this);
+        proveedoresController.ListarTodosProveedores();
+    }
+    public String tituloInterfaz(){
+    setTitle("Ponel -"+rol_usuario);//Panel de administracion
+    jLabel_NombreU.setText(nombreCompleto);
+    jLabel_rolUsuario.setText(rol_usuario);
+    return rol_usuario.trim();
     }
 
     @SuppressWarnings("unchecked")
@@ -68,6 +78,8 @@ public class SystemView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btn_photo = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
+        jLabel_rolUsuario = new javax.swing.JLabel();
+        jLabel_NombreU = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         Logo = new javax.swing.JLabel();
         menuNavegacion = new javax.swing.JTabbedPane();
@@ -147,7 +159,7 @@ public class SystemView extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         txt_direc_Empleado = new javax.swing.JTextField();
-        txt_user_Empleado = new javax.swing.JTextField();
+        txt_nombreUsuario_Empleado = new javax.swing.JTextField();
         txt_nombre_Empleado = new javax.swing.JTextField();
         txt_ID_Empleado = new javax.swing.JTextField();
         txt_telefono_Empleado = new javax.swing.JTextField();
@@ -236,7 +248,7 @@ public class SystemView extends javax.swing.JFrame {
         txt_nombre_Proveedor = new javax.swing.JTextField();
         txt_telefono_Proveedor = new javax.swing.JTextField();
         txt_correo_Proveedor = new javax.swing.JTextField();
-        txt_direc_Proveedor = new javax.swing.JTextField();
+        txt_descripcion_Proveedor = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -249,7 +261,7 @@ public class SystemView extends javax.swing.JFrame {
         cmb_ciudad_Proveedor = new javax.swing.JComboBox<>();
         jLabel32 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        Buscar_Proveedor = new javax.swing.JTextField();
+        txt_buscar_Proveedor = new javax.swing.JTextField();
         jScrollPane5 = new javax.swing.JScrollPane();
         tabla_Prevedor = new javax.swing.JTable();
 
@@ -470,7 +482,7 @@ public class SystemView extends javax.swing.JFrame {
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
 
         btn_photo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono.png"))); // NOI18N
-        jPanel2.add(btn_photo, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 80, 80));
+        jPanel2.add(btn_photo, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 80, 80));
 
         btn_salir.setBackground(new java.awt.Color(255, 255, 255));
         btn_salir.setFont(new java.awt.Font("Javanese Text", 1, 19)); // NOI18N
@@ -482,7 +494,15 @@ public class SystemView extends javax.swing.JFrame {
                 btn_salirActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, 110, 40));
+        jPanel2.add(btn_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 30, 110, 40));
+
+        jLabel_rolUsuario.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
+        jLabel_rolUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jLabel_rolUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 60, 130, 20));
+
+        jLabel_NombreU.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
+        jLabel_NombreU.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jLabel_NombreU, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 40, 130, 20));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 1030, 100));
 
@@ -1184,10 +1204,10 @@ public class SystemView extends javax.swing.JFrame {
             }
         });
 
-        txt_user_Empleado.setBackground(new java.awt.Color(255, 255, 255));
-        txt_user_Empleado.addActionListener(new java.awt.event.ActionListener() {
+        txt_nombreUsuario_Empleado.setBackground(new java.awt.Color(255, 255, 255));
+        txt_nombreUsuario_Empleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_user_EmpleadoActionPerformed(evt);
+                txt_nombreUsuario_EmpleadoActionPerformed(evt);
             }
         });
 
@@ -1223,6 +1243,11 @@ public class SystemView extends javax.swing.JFrame {
         cmb_Rol.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
         cmb_Rol.setForeground(new java.awt.Color(0, 0, 0));
         cmb_Rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Auxiliar" }));
+        cmb_Rol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_RolActionPerformed(evt);
+            }
+        });
 
         btn_registro_Empleado.setBackground(new java.awt.Color(0, 102, 102));
         btn_registro_Empleado.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
@@ -1280,7 +1305,7 @@ public class SystemView extends javax.swing.JFrame {
                             .addGroup(jPanel14Layout.createSequentialGroup()
                                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txt_user_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txt_nombreUsuario_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel14Layout.createSequentialGroup()
                                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1326,7 +1351,7 @@ public class SystemView extends javax.swing.JFrame {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_eliminar_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_user_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_nombreUsuario_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel17)
                         .addComponent(txt_correo_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel14)))
@@ -1338,7 +1363,7 @@ public class SystemView extends javax.swing.JFrame {
                         .addComponent(jLabel22)
                         .addComponent(jLabel24)
                         .addComponent(cmb_Rol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jPanel7.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 930, 270));
@@ -1666,39 +1691,37 @@ public class SystemView extends javax.swing.JFrame {
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel18Layout.createSequentialGroup()
                         .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_direc_Perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel18Layout.createSequentialGroup()
-                                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_ID_Perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_nombre_Perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(26, 26, 26)
-                                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel18Layout.createSequentialGroup()
-                                        .addComponent(txt_NuevaContra_Perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                                        .addComponent(btn_modificar_Perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(45, 45, 45))
-                                    .addGroup(jPanel18Layout.createSequentialGroup()
-                                        .addComponent(txt_ConfirmContra_Perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
-                    .addGroup(jPanel18Layout.createSequentialGroup()
-                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(80, 80, 80)
+                            .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_telefono_Perfil, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                            .addComponent(txt_ID_Perfil, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                            .addComponent(txt_nombre_Perfil, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                            .addComponent(txt_direc_Perfil))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel18Layout.createSequentialGroup()
+                                .addComponent(txt_NuevaContra_Perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                                .addComponent(btn_modificar_Perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45))
+                            .addGroup(jPanel18Layout.createSequentialGroup()
+                                .addComponent(txt_ConfirmContra_Perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel18Layout.createSequentialGroup()
+                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                            .addComponent(jLabel41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_telefono_Perfil, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                             .addComponent(txt_correo_Perfil))
-                        .addGap(83, 83, 83))))
+                        .addGap(86, 86, 86))))
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2031,7 +2054,7 @@ public class SystemView extends javax.swing.JFrame {
 
         jLabel25.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel25.setText("Dirección:");
+        jLabel25.setText("Descripción:");
 
         jLabel26.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
@@ -2062,10 +2085,10 @@ public class SystemView extends javax.swing.JFrame {
             }
         });
 
-        txt_direc_Proveedor.setBackground(new java.awt.Color(255, 255, 255));
-        txt_direc_Proveedor.addActionListener(new java.awt.event.ActionListener() {
+        txt_descripcion_Proveedor.setBackground(new java.awt.Color(255, 255, 255));
+        txt_descripcion_Proveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_direc_ProveedorActionPerformed(evt);
+                txt_descripcion_ProveedorActionPerformed(evt);
             }
         });
 
@@ -2147,7 +2170,7 @@ public class SystemView extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel8Layout.createSequentialGroup()
-                                        .addComponent(txt_direc_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txt_descripcion_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(74, 74, 74)
                                         .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18))
@@ -2194,7 +2217,7 @@ public class SystemView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_direc_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_descripcion_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_modificar_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmb_ciudad_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2229,13 +2252,13 @@ public class SystemView extends javax.swing.JFrame {
         jLabel27.setText("Buscar:");
         jPanel15.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 90, 29));
 
-        Buscar_Proveedor.setBackground(new java.awt.Color(255, 255, 255));
-        Buscar_Proveedor.addActionListener(new java.awt.event.ActionListener() {
+        txt_buscar_Proveedor.setBackground(new java.awt.Color(255, 255, 255));
+        txt_buscar_Proveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Buscar_ProveedorActionPerformed(evt);
+                txt_buscar_ProveedorActionPerformed(evt);
             }
         });
-        jPanel15.add(Buscar_Proveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 164, -1));
+        jPanel15.add(txt_buscar_Proveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 164, -1));
 
         tabla_Prevedor.setBackground(new java.awt.Color(255, 255, 255));
         tabla_Prevedor.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
@@ -2303,9 +2326,9 @@ public class SystemView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_eliminar_CategoriaActionPerformed
 
-    private void Buscar_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar_ProveedorActionPerformed
+    private void txt_buscar_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscar_ProveedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Buscar_ProveedorActionPerformed
+    }//GEN-LAST:event_txt_buscar_ProveedorActionPerformed
 
     private void txt_direccion_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_direccion_ProveedorActionPerformed
         // TODO add your handling code here:
@@ -2315,9 +2338,9 @@ public class SystemView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_ID_ProveedorActionPerformed
 
-    private void txt_direc_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_direc_ProveedorActionPerformed
+    private void txt_descripcion_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_descripcion_ProveedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_direc_ProveedorActionPerformed
+    }//GEN-LAST:event_txt_descripcion_ProveedorActionPerformed
 
     private void txt_correo_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_correo_ProveedorActionPerformed
         // TODO add your handling code here:
@@ -2351,9 +2374,9 @@ public class SystemView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nombre_EmpleadoActionPerformed
 
-    private void txt_user_EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_user_EmpleadoActionPerformed
+    private void txt_nombreUsuario_EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreUsuario_EmpleadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_user_EmpleadoActionPerformed
+    }//GEN-LAST:event_txt_nombreUsuario_EmpleadoActionPerformed
 
     private void txt_direc_EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_direc_EmpleadoActionPerformed
         // TODO add your handling code here:
@@ -2499,6 +2522,9 @@ public class SystemView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNueva_ventaActionPerformed
 
+    private void cmb_RolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_RolActionPerformed
+    }//GEN-LAST:event_cmb_RolActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2535,7 +2561,6 @@ public class SystemView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField Buscar_Proveedor;
     private javax.swing.JTable Campras_Tabla;
     private javax.swing.JLabel Logo;
     public javax.swing.JButton btnAgregar_venta;
@@ -2641,6 +2666,8 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JLabel jLabelReports;
     public javax.swing.JLabel jLabelSettings;
     public javax.swing.JLabel jLabelSuppliers;
+    public javax.swing.JLabel jLabel_NombreU;
+    public javax.swing.JLabel jLabel_rolUsuario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     public javax.swing.JPanel jPanel11;
@@ -2721,16 +2748,18 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JTextField txt_ProductoID;
     private javax.swing.JTextField txt_buscar_Categoria;
     public javax.swing.JTextField txt_buscar_Empleado;
+    public javax.swing.JTextField txt_buscar_Proveedor;
     public javax.swing.JPasswordField txt_contra_Empleado;
     public javax.swing.JTextField txt_correo_Cliente;
     public javax.swing.JTextField txt_correo_Empleado;
     public javax.swing.JTextField txt_correo_Perfil;
     public javax.swing.JTextField txt_correo_Proveedor;
+    public javax.swing.JTextField txt_descripcion_Proveedor;
     public javax.swing.JTextField txt_direc_Cliente;
     public javax.swing.JTextField txt_direc_Empleado;
     public javax.swing.JTextField txt_direc_Perfil;
-    public javax.swing.JTextField txt_direc_Proveedor;
     public javax.swing.JTextField txt_direccion_Proveedor;
+    public javax.swing.JTextField txt_nombreUsuario_Empleado;
     public javax.swing.JTextField txt_nombre_Categoria;
     public javax.swing.JTextField txt_nombre_Empleado;
     public javax.swing.JTextField txt_nombre_Perfil;
@@ -2739,6 +2768,5 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JTextField txt_telefono_Empleado;
     public javax.swing.JTextField txt_telefono_Perfil;
     public javax.swing.JTextField txt_telefono_Proveedor;
-    public javax.swing.JTextField txt_user_Empleado;
     // End of variables declaration//GEN-END:variables
 }
