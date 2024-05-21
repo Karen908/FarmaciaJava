@@ -44,41 +44,56 @@ public class ProveedoresDao {
            return false;
         }
     }
-      //Metodo para listar proveedores
-     public List listProveedoresQuery(String value){
-      List<Proveedores>  list_proveedores = new ArrayList();
-      String query = "SELECT*FROM proveedores ";
-      String query_buscar_proveedores = "SELECT * FROM proveedores WHERE nombre LIKE '%"+value+"%'";
-      
-      try{
-          conn = conexion.getConnection();
-          if(value.equalsIgnoreCase("")){
-              pst = conn.prepareStatement(query);
-              rs = pst.executeQuery(); 
-          }else{
-              pst= conn.prepareStatement(query_buscar_proveedores);
-              rs= pst.executeQuery();    
-          }
-          //para recorrer , los registros, rs nos trae todos los resultados que tenga esa consulta 
-          while(rs.next()){
-              Proveedores proveedores = new Proveedores();
-              proveedores.setId_proveedores(rs.getInt("id_proveedores"));
-              proveedores.setNombre(rs.getString("nombre"));
-              proveedores.setDescripcion(rs.getString("descripcion"));
-              proveedores.setTelefono(rs.getString("telefono"));
-              proveedores.setDireccion(rs.getString("direccion"));
-              proveedores.setEmail(rs.getString("email"));
-              proveedores.setCiudad(rs.getString("ciudad"));
-
-              list_proveedores.add(proveedores);
-          }
-      }catch(SQLException e){
-          JOptionPane.showMessageDialog(null, e.getMessage());
-      }
-      return list_proveedores;
+      // Método para listar proveedores
+public List<Proveedores> listProveedoresQuery(String value) {
+    List<Proveedores> list_proveedores = new ArrayList<>();
+    String query = "SELECT * FROM proveedores";
+    String query_buscar_proveedores = "SELECT * FROM proveedores WHERE nombre LIKE ?";
+    
+    try {
+        conn = conexion.getConnection();
+        if (value == null || value.trim().isEmpty()) {
+            try (PreparedStatement pst = conn.prepareStatement(query);
+                 ResultSet rs = pst.executeQuery()) {
+                 
+                while (rs.next()) {
+                    Proveedores proveedores = new Proveedores();
+                    proveedores.setId_proveedores(rs.getInt("id_proveedores"));
+                    proveedores.setNombre(rs.getString("nombre"));
+                    proveedores.setDescripcion(rs.getString("descripcion"));
+                    proveedores.setDireccion(rs.getString("direccion"));
+                    proveedores.setTelefono(rs.getString("telefono"));
+                    proveedores.setEmail(rs.getString("email"));
+                    proveedores.setCiudad(rs.getString("ciudad"));
+                    list_proveedores.add(proveedores);
+                }
+            }
+        } else {
+            try (PreparedStatement pst = conn.prepareStatement(query_buscar_proveedores)) {
+                pst.setString(1, "%" + value.trim() + "%");
+                try (ResultSet rs = pst.executeQuery()) {
+                    while (rs.next()) {
+                        Proveedores proveedores = new Proveedores();
+                        proveedores.setId_proveedores(rs.getInt("id_proveedores"));
+                        proveedores.setNombre(rs.getString("nombre"));
+                        proveedores.setDescripcion(rs.getString("descripcion"));
+                        proveedores.setDireccion(rs.getString("direccion"));
+                        proveedores.setTelefono(rs.getString("telefono"));
+                        proveedores.setEmail(rs.getString("email"));
+                        proveedores.setCiudad(rs.getString("ciudad"));
+                        list_proveedores.add(proveedores);
+                    }
+                }
+            }
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, e.getMessage());
     }
+    return list_proveedores;
+}
+
      //Metodo para:Modificar proveedores
-    public boolean ActualizarProveedoresQuery(Proveedores proveedores){
+    public boolean actualizarProveedoresQuery(Proveedores proveedores){
         String query ="UPDATE proveedores SET nombre=?,descripcion=?,telefono=?,direccion=?,email=?,ciudad=?,fecha_actualizacion=?"
                 + "WHERE id_proveedores=?";
         //Variable para obtener la fecha y la hora exacta de creacion y actualizacion 
@@ -103,7 +118,7 @@ public class ProveedoresDao {
            return false;
         }
     }
-    //Metodo para:Eliminar cliente
+    //Metodo para:Eliminar proveedores
     public boolean eliminarProveedoresQuery(int id_proveedores){
         String query = "DELETE FROM proveedores WHERE id_proveedores= "+id_proveedores;
         
