@@ -43,7 +43,7 @@ public class CategoriaDao {
 
     public List listCategoriaQuery(String value) {
         List<Categorias> list_categoria = new ArrayList();
-        String query = "SELECT*FROM categorias ";
+        String query = "SELECT*FROM categorias";
         String query_buscar_categoria = "SELECT * FROM categorias WHERE nombre LIKE '%" + value + "%'";
 
         try {
@@ -70,7 +70,7 @@ public class CategoriaDao {
     //Metodo para:Modificar categoria 
 
     public boolean ActualizarCategoriaQuery(Categorias categoria) {
-        String query = "UPDATE categoria SET nombre=?,fecha_actualizacion=?"
+        String query = "UPDATE categorias SET nombre=?,fecha_actualizacion=?"
                 + "WHERE id_categoria=?";
         //Variable para obtener la fecha y la hora exacta de creacion y actualizacion 
 

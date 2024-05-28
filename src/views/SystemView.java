@@ -1,10 +1,13 @@
 
 package views;
 
+import controlador.CategoriaController;
 import controlador.ClientesController;
 import controlador.Controller;
 import controlador.EmpleadosController;
 import controlador.ProveedoresController;
+import model.CategoriaDao;
+import model.Categorias;
 import model.Clientes;
 import model.ClientesDao;
 import model.Empleados;
@@ -25,6 +28,9 @@ public class SystemView extends javax.swing.JFrame {
     //instanciamos proveedores
     Proveedores proveedores = new Proveedores();
     ProveedoresDao proveedoresDao = new ProveedoresDao();
+    //instanciamos a categorias
+    Categorias categorias = new Categorias();
+    CategoriaDao categoriaDao = new CategoriaDao();
 
     public SystemView() {
         initComponents();
@@ -45,6 +51,9 @@ public class SystemView extends javax.swing.JFrame {
         //Controlador proveedores 
         ProveedoresController proveedoresController = new ProveedoresController(proveedores, proveedoresDao, this);
         proveedoresController.ListarTodosProveedores();
+        //Llamamos al controlador de Categoria 
+        CategoriaController categoriaController = new CategoriaController(categorias, categoriaDao, this);
+        categoriaController.listarTodoCategorias();
     }
     public String tituloInterfaz(){
     setTitle("Ponel -"+rol_usuario);//Panel de administracion
@@ -184,8 +193,9 @@ public class SystemView extends javax.swing.JFrame {
         btn_eliminar_Categoria = new javax.swing.JButton();
         btn_registrar_Categoria = new javax.swing.JButton();
         btn_modificar_Categoria = new javax.swing.JButton();
+        btn_cancelarCategoria = new javax.swing.JButton();
         jLabel35 = new javax.swing.JLabel();
-        txt_buscar_Categoria = new javax.swing.JTextField();
+        txtBuscar_Categorias = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         tabla_Categoria = new javax.swing.JTable();
         jPanel16 = new javax.swing.JPanel();
@@ -1450,12 +1460,25 @@ public class SystemView extends javax.swing.JFrame {
             }
         });
 
+        btn_cancelarCategoria.setBackground(new java.awt.Color(0, 102, 102));
+        btn_cancelarCategoria.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
+        btn_cancelarCategoria.setForeground(new java.awt.Color(255, 255, 255));
+        btn_cancelarCategoria.setText("Cancelar");
+        btn_cancelarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarCategoriaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btn_cancelarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1490,7 +1513,9 @@ public class SystemView extends javax.swing.JFrame {
                         .addComponent(btn_modificar_Categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_eliminar_Categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89))
+                .addGap(18, 18, 18)
+                .addComponent(btn_cancelarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
 
         jPanel9.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 20, 520, 270));
@@ -1500,8 +1525,13 @@ public class SystemView extends javax.swing.JFrame {
         jLabel35.setText("Buscar:");
         jPanel9.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, 71, -1));
 
-        txt_buscar_Categoria.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel9.add(txt_buscar_Categoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, 320, -1));
+        txtBuscar_Categorias.setBackground(new java.awt.Color(255, 255, 255));
+        txtBuscar_Categorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscar_CategoriasActionPerformed(evt);
+            }
+        });
+        jPanel9.add(txtBuscar_Categorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, 320, -1));
 
         tabla_Categoria.setBackground(new java.awt.Color(255, 255, 255));
         tabla_Categoria.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
@@ -2525,6 +2555,14 @@ public class SystemView extends javax.swing.JFrame {
     private void cmb_RolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_RolActionPerformed
     }//GEN-LAST:event_cmb_RolActionPerformed
 
+    private void txtBuscar_CategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscar_CategoriasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscar_CategoriasActionPerformed
+
+    private void btn_cancelarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_cancelarCategoriaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2577,6 +2615,7 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JButton btn_Registro_Cliente;
     private javax.swing.JButton btn_actualizarP;
     private javax.swing.JButton btn_agregar_Compra;
+    public javax.swing.JButton btn_cancelarCategoria;
     private javax.swing.JButton btn_cancelarP;
     public javax.swing.JButton btn_cancelar_Empleado;
     public javax.swing.JButton btn_cancelar_Proveedor;
@@ -2708,12 +2747,13 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JTable jTable1;
     public javax.swing.JTabbedPane menuNavegacion;
     public javax.swing.JTable product_tabla;
-    private javax.swing.JTable tabla_Categoria;
+    public javax.swing.JTable tabla_Categoria;
     public javax.swing.JTable tabla_Clientes;
     public javax.swing.JTable tabla_Empleados;
     public javax.swing.JTable tabla_Prevedor;
     public javax.swing.JTable tabla_TotalCompras;
     public javax.swing.JTable tabla_Ventas;
+    public javax.swing.JTextField txtBuscar_Categorias;
     public javax.swing.JTextField txtCantidad_venta;
     public javax.swing.JTextField txtCedulaCli_venta;
     public javax.swing.JTextField txtCodigoP_venta;
@@ -2746,7 +2786,6 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JTextField txt_PrecioV;
     private javax.swing.JTextField txt_Precio_Compra;
     public javax.swing.JTextField txt_ProductoID;
-    private javax.swing.JTextField txt_buscar_Categoria;
     public javax.swing.JTextField txt_buscar_Empleado;
     public javax.swing.JTextField txt_buscar_Proveedor;
     public javax.swing.JPasswordField txt_contra_Empleado;
