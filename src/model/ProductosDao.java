@@ -13,38 +13,39 @@ import javax.swing.JOptionPane;
 public class ProductosDao {
 
     //1)Instanciamos la conexion
-    ConnectionMYSQL conexion = new ConnectionMYSQL();
+    ConnectionMYSQL1 conexion = new ConnectionMYSQL1();
     Connection conn;
     PreparedStatement pst;
     ResultSet rs;
 
     //Metodo de registro productos 
     public boolean registerProductosQuery(Productos productos) {
-        String query = "INSERT INTO productos (categoria_FK, codigo, nombre, descripcion, precio, fecha_creacion, fecha_actualizacion)"
+        
+        String query = "INSERT INTO productos(categoria_FK, codigo, nombre, descripcion, precio, fecha_creacion, fecha_actualizacion)"
                 + " VALUE(?,?,?,?,?,?,?)";
         //Variable para obtener la fecha y la hora exacta de creacion y actualizacion 
 
         Timestamp datetime = new Timestamp(new Date().getTime());
 
-        try {
-            conn = conexion.getConnection();
-            pst = conn.prepareStatement(query);
-            pst.setInt(1, productos.getCodigo());
-            pst.setString(2, productos.getNombre());
-            pst.setString(3, productos.getDescripcion());
-            pst.setDouble(4, productos.getPrecio());
-            pst.setTimestamp(5, datetime);
-            pst.setTimestamp(6, datetime);
-            pst.setInt(7, productos.getCategoria_FK());
+         try {
+        conn = conexion.getConnection();
+        pst = conn.prepareStatement(query);
+        pst.setInt(1, productos.getCategoria_FK()); // Corregir aquí
+        pst.setInt(2, productos.getCodigo()); // Corregir aquí
+        pst.setString(3, productos.getNombre());
+        pst.setString(4, productos.getDescripcion());
+        pst.setDouble(5, productos.getPrecio());
+        pst.setTimestamp(6, datetime);
+        pst.setTimestamp(7, datetime);
 
-            pst.execute();
-            return true;
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al registrar al producto" + e);
-            return false;
-        }
+        pst.execute();
+        return true;
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al registrar al producto" + e);
+        return false;
     }
-    //Metodo para listar proveedores
+}
+    //Metodo para listar producto
 
     public List listProductosQuery(String value) {
         List<Productos> list_productos = new ArrayList();
@@ -81,30 +82,28 @@ public class ProductosDao {
     //Metodo para:Modificar producto
 
     public boolean ActualizarProductosQuery(Productos productos) {
-        String query = "UPDATE productos SET codigo=?, nombre=?,descripcion=?,precio=?,fecha_actualizacion=?,categoria_FK"
-                + "WHERE id_productos=?";
-        //Variable para obtener la fecha y la hora exacta de creacion y actualizacion 
+    String query = "UPDATE productos SET codigo=?, nombre=?, descripcion=?, precio=?, fecha_actualizacion=?, categoria_FK=? WHERE id_productos=?";
+    // Variable para obtener la fecha y la hora exacta de creación y actualización 
+    Timestamp datetime = new Timestamp(new Date().getTime());
 
-        Timestamp datetime = new Timestamp(new Date().getTime());
+    try {
+        conn = conexion.getConnection();
+        pst = conn.prepareStatement(query);
+        pst.setInt(1, productos.getCodigo());
+        pst.setString(2, productos.getNombre());
+        pst.setString(3, productos.getDescripcion());
+        pst.setDouble(4, productos.getPrecio());
+        pst.setTimestamp(5, datetime);
+        pst.setInt(6, productos.getCategoria_FK());
+        pst.setInt(7, productos.getId_productos());
 
-        try {
-            conn = conexion.getConnection();
-            pst = conn.prepareStatement(query);
-            pst.setInt(1, productos.getCodigo());
-            pst.setString(2, productos.getNombre());
-            pst.setString(3, productos.getDescripcion());
-            pst.setDouble(4, productos.getPrecio());
-            pst.setTimestamp(5, datetime);
-            pst.setInt(6, productos.getCategoria_FK());
-            pst.setInt(7, productos.getId_productos());
-
-            pst.execute();
-            return true;
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al modificar los datos del producto" + e);
-            return false;
-        }
+        pst.execute();
+        return true;
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al modificar los datos del producto: " + e);
+        return false;
     }
+}
 
     //Metodo para:Eliminar cliente
     public boolean eliminarProductoQuery(int id_productos) {
@@ -124,7 +123,7 @@ public class ProductosDao {
 
     //Metodo de buscar producto 
     public Productos buscar_producto(int id_productos) {
-        String query = "select pro.*, ca.nombre as nombre_categoria from productos pro inner join categorias ca on pro.categoria_FK= ca.id_categoria WHERE pro.id_productos=?'";
+        String query = "select pro.*, ca.nombre as nombre_categoria from productos pro inner join categorias ca on pro.categoria_FK= ca.id_categoria WHERE pro.id_productos=?";
         Productos productos = new Productos();
         try {
             conn = conexion.getConnection();

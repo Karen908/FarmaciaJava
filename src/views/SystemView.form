@@ -698,9 +698,9 @@
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txt_CodigoP" min="-2" pref="192" max="-2" attributes="0"/>
+                              <Component id="txt_CodigoProducto" min="-2" pref="192" max="-2" attributes="0"/>
                               <Component id="txt_PrecioV" min="-2" pref="192" max="-2" attributes="0"/>
-                              <Component id="txt_NombreP" min="-2" pref="192" max="-2" attributes="0"/>
+                              <Component id="txt_NombreProducto" min="-2" pref="192" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="58" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -718,12 +718,12 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabelDescripcionP" pref="104" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txt_DescripcionP" min="-2" pref="194" max="-2" attributes="0"/>
+                                  <Component id="txt_DescripcionProducto" min="-2" pref="194" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="49" pref="49" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btn_RegistroP" min="-2" pref="117" max="-2" attributes="0"/>
+                              <Component id="btn_RegistroProducto" min="-2" pref="117" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="btn_cancelarP" max="32767" attributes="0"/>
                                   <Component id="btn_actualizarP" pref="117" max="32767" attributes="0"/>
@@ -742,10 +742,10 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabelCodigoP" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelDescripcionP" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txt_CodigoP" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txt_DescripcionP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_CodigoProducto" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_DescripcionProducto" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="btn_RegistroP" pref="0" max="32767" attributes="0"/>
+                              <Component id="btn_RegistroProducto" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -761,7 +761,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabelNombreP" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_NombreP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_NombreProducto" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabelCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="cmb_Categoria" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -846,7 +846,7 @@
                     <Property name="text" type="java.lang.String" value="Categoria: "/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txt_NombreP">
+                <Component class="javax.swing.JTextField" name="txt_NombreProducto">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
@@ -859,7 +859,7 @@
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txt_CodigoP">
+                <Component class="javax.swing.JTextField" name="txt_CodigoProducto">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
@@ -869,7 +869,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_CodigoPActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_CodigoProductoActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -910,7 +910,7 @@
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txt_DescripcionP">
+                <Component class="javax.swing.JTextField" name="txt_DescripcionProducto">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
@@ -920,7 +920,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_DescripcionPActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_DescripcionProductoActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -935,12 +935,7 @@
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
-                      </StringArray>
+                      <StringArray count="0"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -964,6 +959,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Modificar"/>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_eliminarP">
                   <Properties>
@@ -981,6 +979,9 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_eliminarPActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_cancelarP">
                   <Properties>
@@ -995,8 +996,11 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cancelar"/>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="btn_RegistroP">
+                <Component class="javax.swing.JButton" name="btn_RegistroProducto">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="66" red="0" type="rgb"/>
@@ -1010,8 +1014,11 @@
                     <Property name="text" type="java.lang.String" value="Registrar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_RegistroPActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_RegistroProductoActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -1031,7 +1038,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JTextField" name="txt_BuscarP">
+            <Component class="javax.swing.JTextField" name="txt_BuscarProducto">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1064,7 +1071,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Javanese Text" size="12" style="1"/>
+                      <Font name="Javanese Text" size="12" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
@@ -1570,7 +1577,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Javanese Text" size="12" style="1"/>
+                      <Font name="Javanese Text" size="12" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>

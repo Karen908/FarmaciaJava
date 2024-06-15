@@ -12,7 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.CategoriaDao;
 import model.Categorias;
+import model.DynamicCMB;
 import static model.EmpleadosDao.rol_usuario;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import views.SystemView;
 
 
@@ -41,7 +43,12 @@ public class CategoriaController implements ActionListener, MouseListener, KeyLi
         //boton cancelar categoria
         this.view.btn_cancelarCategoria.addActionListener(this);
         //Para el menu de navegacion
-        this.view.menuNavegacion.addMouseListener(this);
+        this.view.jLabelCategories.addMouseListener(this);
+        //Listamos las categorias
+        getNombreCategoria();
+        AutoCompleteDecorator.decorate(view.cmb_Categoria);
+        
+       
     }
 
     @Override
@@ -127,7 +134,7 @@ public class CategoriaController implements ActionListener, MouseListener, KeyLi
             view.txt_ID_Categoria.setText(view.tabla_Categoria.getValueAt(row, 0).toString());
             view.txt_nombre_Categoria.setText(view.tabla_Categoria.getValueAt(row, 1).toString());
             view.btn_registrar_Categoria.setEnabled(false);
-        }else if (e.getSource() == view.menuNavegacion) {
+        }else if (e.getSource() == view.jLabelCategories) {
             if (rol.equals("Administrador")) {
                 view.menuNavegacion.setSelectedIndex(4);
                 limpiarTabla();
@@ -185,6 +192,15 @@ public class CategoriaController implements ActionListener, MouseListener, KeyLi
     public  void limpiarCampos(){
         view.txt_ID_Categoria.setText("");
         view.txt_nombre_Categoria.setText("");
+    }
+    //metodo para mostrar el nombre de las categorias 
+    public void getNombreCategoria(){
+        List<Categorias> list= categoriaDao.listCategoriaQuery(view.txtBuscar_Categorias.getText());
+            for(int i = 0; i < list.size(); i++) {
+                int id = list.get(i).getId_categoria();
+                String nombre = list.get(i).getNombre();
+                view.cmb_Categoria.addItem(new DynamicCMB(id,nombre));
+            }
     }
     
 }

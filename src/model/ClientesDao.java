@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 public class ClientesDao {
     //1)Instanciamos la conexion
-    ConnectionMYSQL conexion = new ConnectionMYSQL();
+    ConnectionMYSQL1 conexion = new ConnectionMYSQL1();
     //Llamamos a la variable 
     Connection conn; //Para realizar la conexion 
     PreparedStatement pst; //Sirve para consultar 

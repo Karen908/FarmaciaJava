@@ -14,7 +14,7 @@ public class EmpleadosDao {
 
     //Aqui van todos los metodos que van a permitir a java interactuar con MYSQL
     //1)Instanciamos la conexion
-    ConnectionMYSQL conexion = new ConnectionMYSQL();
+    ConnectionMYSQL1 conexion = new ConnectionMYSQL1();
     //Llamamos a la variable 
     Connection conn; //Para realizar la conexion 
     PreparedStatement pst; //Sirve para consultar 

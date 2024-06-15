@@ -5,6 +5,7 @@ import controlador.CategoriaController;
 import controlador.ClientesController;
 import controlador.Controller;
 import controlador.EmpleadosController;
+import controlador.ProductosController;
 import controlador.ProveedoresController;
 import model.CategoriaDao;
 import model.Categorias;
@@ -14,6 +15,8 @@ import model.Empleados;
 import model.EmpleadosDao;
 import static model.EmpleadosDao.nombreCompleto;
 import static model.EmpleadosDao.rol_usuario;
+import model.Productos;
+import model.ProductosDao;
 import model.Proveedores;
 import model.ProveedoresDao;
 
@@ -31,6 +34,9 @@ public class SystemView extends javax.swing.JFrame {
     //instanciamos a categorias
     Categorias categorias = new Categorias();
     CategoriaDao categoriaDao = new CategoriaDao();
+    //instanciamos a producto
+    Productos productos = new Productos();
+    ProductosDao productosDao = new ProductosDao();
 
     public SystemView() {
         initComponents();
@@ -54,6 +60,9 @@ public class SystemView extends javax.swing.JFrame {
         //Llamamos al controlador de Categoria 
         CategoriaController categoriaController = new CategoriaController(categorias, categoriaDao, this);
         categoriaController.listarTodoCategorias();
+        //Controlador de productos 
+        ProductosController productorController = new ProductosController(productos, productosDao, this);
+        productorController.listProductos();
     }
     public String tituloInterfaz(){
     setTitle("Ponel -"+rol_usuario);//Panel de administracion
@@ -100,18 +109,18 @@ public class SystemView extends javax.swing.JFrame {
         jLabelProducto_ID = new javax.swing.JLabel();
         jLabelDescripcionP = new javax.swing.JLabel();
         jLabelCategoria = new javax.swing.JLabel();
-        txt_NombreP = new javax.swing.JTextField();
-        txt_CodigoP = new javax.swing.JTextField();
+        txt_NombreProducto = new javax.swing.JTextField();
+        txt_CodigoProducto = new javax.swing.JTextField();
         txt_PrecioV = new javax.swing.JTextField();
         txt_ProductoID = new javax.swing.JTextField();
-        txt_DescripcionP = new javax.swing.JTextField();
+        txt_DescripcionProducto = new javax.swing.JTextField();
         cmb_Categoria = new javax.swing.JComboBox<>();
         btn_actualizarP = new javax.swing.JButton();
         btn_eliminarP = new javax.swing.JButton();
         btn_cancelarP = new javax.swing.JButton();
-        btn_RegistroP = new javax.swing.JButton();
+        btn_RegistroProducto = new javax.swing.JButton();
         jLabelBuscarP = new javax.swing.JLabel();
-        txt_BuscarP = new javax.swing.JTextField();
+        txt_BuscarProducto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         product_tabla = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
@@ -558,14 +567,14 @@ public class SystemView extends javax.swing.JFrame {
         jLabelCategoria.setForeground(new java.awt.Color(0, 0, 0));
         jLabelCategoria.setText("Categoria: ");
 
-        txt_NombreP.setBackground(java.awt.Color.white);
-        txt_NombreP.setForeground(new java.awt.Color(0, 0, 0));
+        txt_NombreProducto.setBackground(java.awt.Color.white);
+        txt_NombreProducto.setForeground(new java.awt.Color(0, 0, 0));
 
-        txt_CodigoP.setBackground(java.awt.Color.white);
-        txt_CodigoP.setForeground(new java.awt.Color(0, 0, 0));
-        txt_CodigoP.addActionListener(new java.awt.event.ActionListener() {
+        txt_CodigoProducto.setBackground(java.awt.Color.white);
+        txt_CodigoProducto.setForeground(new java.awt.Color(0, 0, 0));
+        txt_CodigoProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_CodigoPActionPerformed(evt);
+                txt_CodigoProductoActionPerformed(evt);
             }
         });
 
@@ -588,17 +597,16 @@ public class SystemView extends javax.swing.JFrame {
             }
         });
 
-        txt_DescripcionP.setBackground(java.awt.Color.white);
-        txt_DescripcionP.setForeground(new java.awt.Color(0, 0, 0));
-        txt_DescripcionP.addActionListener(new java.awt.event.ActionListener() {
+        txt_DescripcionProducto.setBackground(java.awt.Color.white);
+        txt_DescripcionProducto.setForeground(new java.awt.Color(0, 0, 0));
+        txt_DescripcionProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_DescripcionPActionPerformed(evt);
+                txt_DescripcionProductoActionPerformed(evt);
             }
         });
 
         cmb_Categoria.setBackground(java.awt.Color.white);
         cmb_Categoria.setForeground(new java.awt.Color(0, 0, 0));
-        cmb_Categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmb_Categoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_CategoriaActionPerformed(evt);
@@ -625,13 +633,13 @@ public class SystemView extends javax.swing.JFrame {
         btn_cancelarP.setForeground(new java.awt.Color(255, 255, 255));
         btn_cancelarP.setText("Cancelar");
 
-        btn_RegistroP.setBackground(new java.awt.Color(0, 102, 102));
-        btn_RegistroP.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
-        btn_RegistroP.setForeground(new java.awt.Color(255, 255, 255));
-        btn_RegistroP.setText("Registrar");
-        btn_RegistroP.addActionListener(new java.awt.event.ActionListener() {
+        btn_RegistroProducto.setBackground(new java.awt.Color(0, 102, 102));
+        btn_RegistroProducto.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
+        btn_RegistroProducto.setForeground(new java.awt.Color(255, 255, 255));
+        btn_RegistroProducto.setText("Registrar");
+        btn_RegistroProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_RegistroPActionPerformed(evt);
+                btn_RegistroProductoActionPerformed(evt);
             }
         });
 
@@ -651,9 +659,9 @@ public class SystemView extends javax.swing.JFrame {
                         .addComponent(jLabelCodigoP, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)))
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_CodigoP, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_CodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_PrecioV, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_NombreP, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_NombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
@@ -667,10 +675,10 @@ public class SystemView extends javax.swing.JFrame {
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jLabelDescripcionP, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_DescripcionP, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txt_DescripcionProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(49, 49, 49)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_RegistroP, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_RegistroProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(btn_cancelarP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_actualizarP, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
@@ -685,9 +693,9 @@ public class SystemView extends javax.swing.JFrame {
                     .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabelCodigoP)
                         .addComponent(jLabelDescripcionP)
-                        .addComponent(txt_CodigoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txt_DescripcionP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_RegistroP, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(txt_CodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_DescripcionProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_RegistroProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
@@ -701,7 +709,7 @@ public class SystemView extends javax.swing.JFrame {
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelNombreP)
-                            .addComponent(txt_NombreP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_NombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelCategoria)
                             .addComponent(cmb_Categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -720,11 +728,11 @@ public class SystemView extends javax.swing.JFrame {
         jLabelBuscarP.setText("Buscar producto: ");
         jPanel4.add(jLabelBuscarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, -1, -1));
 
-        txt_BuscarP.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.add(txt_BuscarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, 190, -1));
+        txt_BuscarProducto.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.add(txt_BuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, 190, -1));
 
         product_tabla.setBackground(new java.awt.Color(255, 255, 255));
-        product_tabla.setFont(new java.awt.Font("Javanese Text", 1, 12)); // NOI18N
+        product_tabla.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
         product_tabla.setForeground(new java.awt.Color(0, 0, 0));
         product_tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -959,7 +967,7 @@ public class SystemView extends javax.swing.JFrame {
         jPanel5.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 930, 270));
 
         Campras_Tabla.setBackground(new java.awt.Color(255, 255, 255));
-        Campras_Tabla.setFont(new java.awt.Font("Javanese Text", 1, 12)); // NOI18N
+        Campras_Tabla.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
         Campras_Tabla.setForeground(new java.awt.Color(0, 0, 0));
         Campras_Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2468,9 +2476,9 @@ public class SystemView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_CodigoCompraActionPerformed
 
-    private void btn_RegistroPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistroPActionPerformed
+    private void btn_RegistroProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistroProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_RegistroPActionPerformed
+    }//GEN-LAST:event_btn_RegistroProductoActionPerformed
 
     private void btn_eliminarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarPActionPerformed
         // TODO add your handling code here:
@@ -2480,9 +2488,9 @@ public class SystemView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmb_CategoriaActionPerformed
 
-    private void txt_DescripcionPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_DescripcionPActionPerformed
+    private void txt_DescripcionProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_DescripcionProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_DescripcionPActionPerformed
+    }//GEN-LAST:event_txt_DescripcionProductoActionPerformed
 
     private void txt_ProductoIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ProductoIDActionPerformed
         // TODO add your handling code here:
@@ -2492,9 +2500,9 @@ public class SystemView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_PrecioVActionPerformed
 
-    private void txt_CodigoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_CodigoPActionPerformed
+    private void txt_CodigoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_CodigoProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_CodigoPActionPerformed
+    }//GEN-LAST:event_txt_CodigoProductoActionPerformed
 
     private void txtTotalPagar_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalPagar_ventaActionPerformed
         // TODO add your handling code here:
@@ -2611,15 +2619,15 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JButton btn_Eliminar_Cliente;
     public javax.swing.JButton btn_Modificar_Cliente;
     private javax.swing.JButton btn_NuevaCompra;
-    private javax.swing.JButton btn_RegistroP;
+    public javax.swing.JButton btn_RegistroProducto;
     public javax.swing.JButton btn_Registro_Cliente;
-    private javax.swing.JButton btn_actualizarP;
+    public javax.swing.JButton btn_actualizarP;
     private javax.swing.JButton btn_agregar_Compra;
     public javax.swing.JButton btn_cancelarCategoria;
-    private javax.swing.JButton btn_cancelarP;
+    public javax.swing.JButton btn_cancelarP;
     public javax.swing.JButton btn_cancelar_Empleado;
     public javax.swing.JButton btn_cancelar_Proveedor;
-    private javax.swing.JButton btn_eliminarP;
+    public javax.swing.JButton btn_eliminarP;
     public javax.swing.JButton btn_eliminar_Categoria;
     public javax.swing.JButton btn_eliminar_Empleado;
     public javax.swing.JButton btn_eliminar_Proveedor;
@@ -2763,13 +2771,13 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JTextField txtSubTotal_venta;
     private javax.swing.JTextField txtSubtotal_Compra;
     public javax.swing.JTextField txtTotalPagar_venta;
-    public javax.swing.JTextField txt_BuscarP;
+    public javax.swing.JTextField txt_BuscarProducto;
     public javax.swing.JTextField txt_Buscar_Cliente;
     private javax.swing.JTextField txt_Cantidad_Compra;
     private javax.swing.JTextField txt_CodigoCompra;
-    public javax.swing.JTextField txt_CodigoP;
+    public javax.swing.JTextField txt_CodigoProducto;
     public javax.swing.JPasswordField txt_ConfirmContra_Perfil;
-    public javax.swing.JTextField txt_DescripcionP;
+    public javax.swing.JTextField txt_DescripcionProducto;
     public javax.swing.JTextField txt_ID_Categoria;
     public javax.swing.JTextField txt_ID_Cliente;
     private javax.swing.JTextField txt_ID_Compra;
@@ -2778,7 +2786,7 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JTextField txt_ID_Proveedor;
     public javax.swing.JTextField txt_IdVenta;
     public javax.swing.JTextField txt_NombreCliente_venta;
-    public javax.swing.JTextField txt_NombreP;
+    public javax.swing.JTextField txt_NombreProducto;
     public javax.swing.JTextField txt_Nombre_Cliente;
     private javax.swing.JTextField txt_Nombre_Compra;
     public javax.swing.JPasswordField txt_NuevaContra_Perfil;

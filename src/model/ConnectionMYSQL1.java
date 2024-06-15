@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class ConnectionMYSQL {
+public class ConnectionMYSQL1 {
     private String database_name = "farmacia";
     private String user= "root";
     private String password = "administrador";
@@ -32,4 +32,3 @@ public class ConnectionMYSQL {
     }
    
     }
-
