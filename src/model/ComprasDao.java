@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-public class CamprasDao {
+public class ComprasDao {
     //1)Instanciamos la conexion
 
     ConnectionMYSQL1 conexion = new ConnectionMYSQL1();
@@ -40,28 +40,39 @@ public class CamprasDao {
     }
 
     //Metodo para registrar detalles de la compra 
-    public boolean registarDetallesCompraQuery(int idDetalles_compra, double precio_compra, int cantidad_compra, double total_compra, int productoID_FK) {
-
-        String query = "INSERT INTO detalles_compra (productoID_FK, idDetalles_compra, precio_compra, cantidad_compra, total_compra, fecha_compra) VALUES (?, ?, ?, ?, ?, ?)";
-        Timestamp datetime = new Timestamp(new Date().getTime());
-
+   public boolean registarDetallesCompraQuery(double precio_compra, int cantidad_compra, double total_compra, int productoID_FK) {
+    String query = "INSERT INTO detalles_compra (productoID_FK, precio_compra, cantidad_compra, total_compra) VALUES (?, ?, ?, ?)";
+    
+    try {
+        conn = conexion.getConnection();
+        pst = conn.prepareStatement(query);
+        pst.setInt(1, productoID_FK);
+        pst.setDouble(2, precio_compra);
+        pst.setInt(3, cantidad_compra);
+        pst.setDouble(4, total_compra);
+        pst.executeUpdate();
+        
+        System.out.println("Detalles de compra insertados correctamente.");
+        return true;
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al registrar los detalles de la compra " + e);
+        return false;
+    } finally {
+        // Cerrar recursos
         try {
-            conn = conexion.getConnection();
-            pst = conn.prepareStatement(query);
-            pst.setInt(1, idDetalles_compra);
-            pst.setDouble(2, precio_compra);
-            pst.setInt(3, cantidad_compra);
-            pst.setDouble(4, total_compra);
-            pst.setTimestamp(5, datetime);
-            pst.setInt(6, productoID_FK);
-            pst.execute();
-            return true;
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al registrar los detalles de la compra " + e);
-            return false;
+            if (pst != null) {
+                pst.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-
     }
+}
+
+
 
     //Metodo para obtener el id de la compra 
     public int CampraID() {

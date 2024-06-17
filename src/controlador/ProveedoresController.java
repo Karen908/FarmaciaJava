@@ -9,10 +9,13 @@ import java.awt.event.MouseListener;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Categorias;
+import model.DynamicCMB;
 import model.Proveedores;
 import model.ProveedoresDao;
 import views.SystemView;
 import static model.EmpleadosDao.rol_usuario;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 public class ProveedoresController implements ActionListener, MouseListener, KeyListener {
 
@@ -40,6 +43,9 @@ public class ProveedoresController implements ActionListener, MouseListener, Key
         this.views.tabla_Prevedor.addMouseListener(this);
         //ponemos a la escucha el buscador 
         this.views.txt_buscar_Proveedor.addKeyListener(this);
+        getNombreProveedor();
+        AutoCompleteDecorator.decorate(views.cmb_Proveedor_Compra);
+
     }
 
     @Override
@@ -236,4 +242,14 @@ public void ListarTodosProveedores() {
         views.txt_correo_Proveedor.setText("");
         views.cmb_ciudad_Proveedor.setSelectedIndex(0);
     }
+    //Metodo para mostrar el nombre del proveedor
+    public void getNombreProveedor() {
+        List<Proveedores> list = proveedoresDao.listProveedoresQuery(views.txt_buscar_Proveedor.getText());
+        for (int i = 0; i < list.size(); i++) {
+            int id = list.get(i).getId_proveedores();
+            String nombre = list.get(i).getNombre();
+            views.cmb_Proveedor_Compra.addItem(new DynamicCMB(id,nombre));
+        }
+    }
+
 }

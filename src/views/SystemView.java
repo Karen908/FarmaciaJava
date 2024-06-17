@@ -3,6 +3,7 @@ package views;
 
 import controlador.CategoriaController;
 import controlador.ClientesController;
+import controlador.ComprasController;
 import controlador.Controller;
 import controlador.EmpleadosController;
 import controlador.ProductosController;
@@ -11,6 +12,8 @@ import model.CategoriaDao;
 import model.Categorias;
 import model.Clientes;
 import model.ClientesDao;
+import model.Compras;
+import model.ComprasDao;
 import model.Empleados;
 import model.EmpleadosDao;
 import static model.EmpleadosDao.nombreCompleto;
@@ -37,7 +40,10 @@ public class SystemView extends javax.swing.JFrame {
     //instanciamos a producto
     Productos productos = new Productos();
     ProductosDao productosDao = new ProductosDao();
-
+    //instanciamos compras 
+    Compras compras = new Compras();
+    ComprasDao comprasDao = new ComprasDao();
+    
     public SystemView() {
         initComponents();
         setSize(1208, 680);           //tamaño de la ventana 
@@ -63,6 +69,8 @@ public class SystemView extends javax.swing.JFrame {
         //Controlador de productos 
         ProductosController productorController = new ProductosController(productos, productosDao, this);
         productorController.listProductos();
+        //Controlador de compras
+        ComprasController comprasController = new ComprasController(compras, comprasDao, this);
     }
     public String tituloInterfaz(){
     setTitle("Ponel -"+rol_usuario);//Panel de administracion
@@ -142,11 +150,11 @@ public class SystemView extends javax.swing.JFrame {
         txtSubtotal_Compra = new javax.swing.JTextField();
         cmb_Proveedor_Compra = new javax.swing.JComboBox<>();
         btnRemover_Compra = new javax.swing.JButton();
-        btn_agregar_Compra = new javax.swing.JButton();
+        btn_Agregar_Compra = new javax.swing.JButton();
         btn_Confirmar_Compra = new javax.swing.JButton();
         btn_NuevaCompra = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        Campras_Tabla = new javax.swing.JTable();
+        campras_Tabla = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -606,6 +614,7 @@ public class SystemView extends javax.swing.JFrame {
         });
 
         cmb_Categoria.setBackground(java.awt.Color.white);
+        cmb_Categoria.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         cmb_Categoria.setForeground(new java.awt.Color(0, 0, 0));
         cmb_Categoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -787,7 +796,7 @@ public class SystemView extends javax.swing.JFrame {
         jLabel9.setText("Subtotal:");
 
         txt_CodigoCompra.setBackground(new java.awt.Color(255, 255, 255));
-        txt_CodigoCompra.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
+        txt_CodigoCompra.setFont(new java.awt.Font("Javanese Text", 0, 16)); // NOI18N
         txt_CodigoCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_CodigoCompraActionPerformed(evt);
@@ -795,7 +804,7 @@ public class SystemView extends javax.swing.JFrame {
         });
 
         txt_Precio_Compra.setBackground(new java.awt.Color(255, 255, 255));
-        txt_Precio_Compra.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
+        txt_Precio_Compra.setFont(new java.awt.Font("Javanese Text", 0, 16)); // NOI18N
         txt_Precio_Compra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_Precio_CompraActionPerformed(evt);
@@ -804,7 +813,7 @@ public class SystemView extends javax.swing.JFrame {
 
         txt_ID_Compra.setEditable(false);
         txt_ID_Compra.setBackground(new java.awt.Color(255, 255, 255));
-        txt_ID_Compra.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
+        txt_ID_Compra.setFont(new java.awt.Font("Javanese Text", 0, 16)); // NOI18N
         txt_ID_Compra.setEnabled(false);
         txt_ID_Compra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -813,7 +822,7 @@ public class SystemView extends javax.swing.JFrame {
         });
 
         txt_Nombre_Compra.setBackground(new java.awt.Color(255, 255, 255));
-        txt_Nombre_Compra.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
+        txt_Nombre_Compra.setFont(new java.awt.Font("Javanese Text", 0, 16)); // NOI18N
         txt_Nombre_Compra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_Nombre_CompraActionPerformed(evt);
@@ -821,7 +830,7 @@ public class SystemView extends javax.swing.JFrame {
         });
 
         txt_Cantidad_Compra.setBackground(new java.awt.Color(255, 255, 255));
-        txt_Cantidad_Compra.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
+        txt_Cantidad_Compra.setFont(new java.awt.Font("Javanese Text", 0, 16)); // NOI18N
         txt_Cantidad_Compra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_Cantidad_CompraActionPerformed(evt);
@@ -830,7 +839,7 @@ public class SystemView extends javax.swing.JFrame {
 
         txt_Pagar_Compra.setEditable(false);
         txt_Pagar_Compra.setBackground(new java.awt.Color(255, 255, 255));
-        txt_Pagar_Compra.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
+        txt_Pagar_Compra.setFont(new java.awt.Font("Javanese Text", 0, 16)); // NOI18N
         txt_Pagar_Compra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_Pagar_CompraActionPerformed(evt);
@@ -839,7 +848,7 @@ public class SystemView extends javax.swing.JFrame {
 
         txtSubtotal_Compra.setEditable(false);
         txtSubtotal_Compra.setBackground(new java.awt.Color(255, 255, 255));
-        txtSubtotal_Compra.setFont(new java.awt.Font("Javanese Text", 1, 16)); // NOI18N
+        txtSubtotal_Compra.setFont(new java.awt.Font("Javanese Text", 0, 16)); // NOI18N
         txtSubtotal_Compra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSubtotal_CompraActionPerformed(evt);
@@ -847,22 +856,21 @@ public class SystemView extends javax.swing.JFrame {
         });
 
         cmb_Proveedor_Compra.setBackground(new java.awt.Color(255, 255, 255));
-        cmb_Proveedor_Compra.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
+        cmb_Proveedor_Compra.setFont(new java.awt.Font("Javanese Text", 0, 16)); // NOI18N
         cmb_Proveedor_Compra.setForeground(new java.awt.Color(0, 0, 0));
-        cmb_Proveedor_Compra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnRemover_Compra.setBackground(new java.awt.Color(0, 102, 102));
         btnRemover_Compra.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
         btnRemover_Compra.setForeground(new java.awt.Color(255, 255, 255));
         btnRemover_Compra.setText("Eliminar");
 
-        btn_agregar_Compra.setBackground(new java.awt.Color(0, 102, 102));
-        btn_agregar_Compra.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
-        btn_agregar_Compra.setForeground(new java.awt.Color(255, 255, 255));
-        btn_agregar_Compra.setText("Agregar");
-        btn_agregar_Compra.addActionListener(new java.awt.event.ActionListener() {
+        btn_Agregar_Compra.setBackground(new java.awt.Color(0, 102, 102));
+        btn_Agregar_Compra.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
+        btn_Agregar_Compra.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Agregar_Compra.setText("Agregar");
+        btn_Agregar_Compra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_agregar_CompraActionPerformed(evt);
+                btn_Agregar_CompraActionPerformed(evt);
             }
         });
 
@@ -919,7 +927,7 @@ public class SystemView extends javax.swing.JFrame {
                         .addComponent(txt_Precio_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_agregar_Compra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_Agregar_Compra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_Confirmar_Compra, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
                     .addComponent(btnRemover_Compra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_NuevaCompra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -933,7 +941,7 @@ public class SystemView extends javax.swing.JFrame {
                         .addComponent(txt_CodigoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txt_Precio_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_agregar_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_Agregar_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -966,10 +974,10 @@ public class SystemView extends javax.swing.JFrame {
 
         jPanel5.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 930, 270));
 
-        Campras_Tabla.setBackground(new java.awt.Color(255, 255, 255));
-        Campras_Tabla.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
-        Campras_Tabla.setForeground(new java.awt.Color(0, 0, 0));
-        Campras_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+        campras_Tabla.setBackground(new java.awt.Color(255, 255, 255));
+        campras_Tabla.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
+        campras_Tabla.setForeground(new java.awt.Color(0, 0, 0));
+        campras_Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -985,7 +993,7 @@ public class SystemView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(Campras_Tabla);
+        jScrollPane2.setViewportView(campras_Tabla);
 
         jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 930, 170));
 
@@ -1258,7 +1266,7 @@ public class SystemView extends javax.swing.JFrame {
         });
 
         cmb_Rol.setBackground(new java.awt.Color(255, 255, 255));
-        cmb_Rol.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
+        cmb_Rol.setFont(new java.awt.Font("Javanese Text", 0, 14)); // NOI18N
         cmb_Rol.setForeground(new java.awt.Color(0, 0, 0));
         cmb_Rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Auxiliar" }));
         cmb_Rol.addActionListener(new java.awt.event.ActionListener() {
@@ -2179,7 +2187,7 @@ public class SystemView extends javax.swing.JFrame {
         });
 
         cmb_ciudad_Proveedor.setBackground(new java.awt.Color(255, 255, 255));
-        cmb_ciudad_Proveedor.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
+        cmb_ciudad_Proveedor.setFont(new java.awt.Font("Javanese Text", 0, 14)); // NOI18N
         cmb_ciudad_Proveedor.setForeground(new java.awt.Color(0, 0, 0));
         cmb_ciudad_Proveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bogotá", "Barranquilla", "Cali", "Medellin", " " }));
 
@@ -2217,7 +2225,7 @@ public class SystemView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(2, 2, 2)))
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_ID_Proveedor)
                             .addComponent(cmb_ciudad_Proveedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txt_direccion_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -2227,7 +2235,7 @@ public class SystemView extends javax.swing.JFrame {
                     .addComponent(btn_registrar_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_modificar_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_eliminar_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addGap(113, 113, 113))
             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel8Layout.createSequentialGroup()
                     .addGap(43, 43, 43)
@@ -2444,9 +2452,9 @@ public class SystemView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_Nombre_ClienteActionPerformed
 
-    private void btn_agregar_CompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregar_CompraActionPerformed
+    private void btn_Agregar_CompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Agregar_CompraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_agregar_CompraActionPerformed
+    }//GEN-LAST:event_btn_Agregar_CompraActionPerformed
 
     private void txtSubtotal_CompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubtotal_CompraActionPerformed
         // TODO add your handling code here:
@@ -2607,22 +2615,21 @@ public class SystemView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Campras_Tabla;
     private javax.swing.JLabel Logo;
     public javax.swing.JButton btnAgregar_venta;
     public javax.swing.JButton btnEliminar_venta;
     public javax.swing.JButton btnNueva_venta;
-    private javax.swing.JButton btnRemover_Compra;
+    public javax.swing.JButton btnRemover_Compra;
     public javax.swing.JButton btnVender_venta;
+    public javax.swing.JButton btn_Agregar_Compra;
     public javax.swing.JButton btn_Cancelar_Cliente;
-    private javax.swing.JButton btn_Confirmar_Compra;
+    public javax.swing.JButton btn_Confirmar_Compra;
     public javax.swing.JButton btn_Eliminar_Cliente;
     public javax.swing.JButton btn_Modificar_Cliente;
-    private javax.swing.JButton btn_NuevaCompra;
+    public javax.swing.JButton btn_NuevaCompra;
     public javax.swing.JButton btn_RegistroProducto;
     public javax.swing.JButton btn_Registro_Cliente;
     public javax.swing.JButton btn_actualizarP;
-    private javax.swing.JButton btn_agregar_Compra;
     public javax.swing.JButton btn_cancelarCategoria;
     public javax.swing.JButton btn_cancelarP;
     public javax.swing.JButton btn_cancelar_Empleado;
@@ -2640,8 +2647,9 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JButton btn_registrar_Proveedor;
     public javax.swing.JButton btn_registro_Empleado;
     private javax.swing.JButton btn_salir;
+    public javax.swing.JTable campras_Tabla;
     public javax.swing.JComboBox<Object> cmb_Categoria;
-    private javax.swing.JComboBox<String> cmb_Proveedor_Compra;
+    public javax.swing.JComboBox<Object> cmb_Proveedor_Compra;
     public javax.swing.JComboBox<String> cmb_Rol;
     public javax.swing.JComboBox<String> cmb_ciudad_Proveedor;
     private javax.swing.JLabel jLabel1;
@@ -2769,18 +2777,18 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JTextField txtPrecio_venta;
     public javax.swing.JTextField txtStock_venta;
     public javax.swing.JTextField txtSubTotal_venta;
-    private javax.swing.JTextField txtSubtotal_Compra;
+    public javax.swing.JTextField txtSubtotal_Compra;
     public javax.swing.JTextField txtTotalPagar_venta;
     public javax.swing.JTextField txt_BuscarProducto;
     public javax.swing.JTextField txt_Buscar_Cliente;
-    private javax.swing.JTextField txt_Cantidad_Compra;
-    private javax.swing.JTextField txt_CodigoCompra;
+    public javax.swing.JTextField txt_Cantidad_Compra;
+    public javax.swing.JTextField txt_CodigoCompra;
     public javax.swing.JTextField txt_CodigoProducto;
     public javax.swing.JPasswordField txt_ConfirmContra_Perfil;
     public javax.swing.JTextField txt_DescripcionProducto;
     public javax.swing.JTextField txt_ID_Categoria;
     public javax.swing.JTextField txt_ID_Cliente;
-    private javax.swing.JTextField txt_ID_Compra;
+    public javax.swing.JTextField txt_ID_Compra;
     public javax.swing.JTextField txt_ID_Empleado;
     public javax.swing.JTextField txt_ID_Perfil;
     public javax.swing.JTextField txt_ID_Proveedor;
@@ -2788,11 +2796,11 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JTextField txt_NombreCliente_venta;
     public javax.swing.JTextField txt_NombreProducto;
     public javax.swing.JTextField txt_Nombre_Cliente;
-    private javax.swing.JTextField txt_Nombre_Compra;
+    public javax.swing.JTextField txt_Nombre_Compra;
     public javax.swing.JPasswordField txt_NuevaContra_Perfil;
-    private javax.swing.JTextField txt_Pagar_Compra;
+    public javax.swing.JTextField txt_Pagar_Compra;
     public javax.swing.JTextField txt_PrecioV;
-    private javax.swing.JTextField txt_Precio_Compra;
+    public javax.swing.JTextField txt_Precio_Compra;
     public javax.swing.JTextField txt_ProductoID;
     public javax.swing.JTextField txt_buscar_Empleado;
     public javax.swing.JTextField txt_buscar_Proveedor;
