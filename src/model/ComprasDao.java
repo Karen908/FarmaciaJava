@@ -40,16 +40,17 @@ public class ComprasDao {
     }
 
     //Metodo para registrar detalles de la compra 
-   public boolean registarDetallesCompraQuery(double precio_compra, int cantidad_compra, double total_compra, int productoID_FK) {
-    String query = "INSERT INTO detalles_compra (productoID_FK, precio_compra, cantidad_compra, total_compra) VALUES (?, ?, ?, ?)";
+public boolean registarDetallesCompraQuery(int compraID_FK, double precio_compra, int cantidad_compra, double total_compra, int productoID_FK) {
+    String query = "INSERT INTO detalles_compra (compraID_FK, productoID_FK, precio_compra, cantidad_compra, total_compra) VALUES (?, ?, ?, ?, ?)";
     
     try {
         conn = conexion.getConnection();
         pst = conn.prepareStatement(query);
-        pst.setInt(1, productoID_FK);
-        pst.setDouble(2, precio_compra);
-        pst.setInt(3, cantidad_compra);
-        pst.setDouble(4, total_compra);
+        pst.setInt(1, compraID_FK); // Agregar el ID de la compra aquí
+        pst.setInt(2, productoID_FK);
+        pst.setDouble(3, precio_compra);
+        pst.setInt(4, cantidad_compra);
+        pst.setDouble(5, total_compra);
         pst.executeUpdate();
         
         System.out.println("Detalles de compra insertados correctamente.");
@@ -117,35 +118,41 @@ public class ComprasDao {
     }
     //Metodo para imprimir factura  
 
-    public List<Compras> listarDetallesCompraQuery(int id) {
-        List<Compras> listCompras = new ArrayList<>();
-        String query = "SELECT c.fecha_compra, dc.precio_compra, dc.cantidad_compra, dc.total_compra, p.nombre AS nombre_proveedor, pr.nombre AS nombre_producto, e.nombreCompleto "
-                + "FROM compras c "
-                + "INNER JOIN detalles_compra dc ON c.id_Compras = dc.idDetalles_compra "
-                + "INNER JOIN productos pr ON dc.productoID_FK = pr.id_productos "
-                + "INNER JOIN proveedores p ON c.proveedorID_FK = p.id_proveedores "
-                + "INNER JOIN empleados e ON c.empleadoId_FK = e.id_empleados WHERE c.id_Compras = ?;";
-        try {
-            conn = conexion.getConnection();
-            pst = conn.prepareStatement(query);
-            pst.setInt(1, id);
-            rs = pst.executeQuery();
+public List<Compras> listarDetallesCompraQuery(int id) {
+    List<Compras> listCompras = new ArrayList<>();
+    String query = "SELECT c.fecha_compra, dc.precio_compra, dc.cantidad_compra, dc.total_compra, p.nombre AS nombre_proveedor, pr.nombre AS nombre_producto, e.nombreCompleto "
+            + "FROM compras c "
+            + "INNER JOIN detalles_compra dc ON c.id_Compras = dc.compraID_FK "
+            + "INNER JOIN productos pr ON dc.productoID_FK = pr.id_productos "
+            + "INNER JOIN proveedores p ON c.proveedorID_FK = p.id_proveedores "
+            + "INNER JOIN empleados e ON c.empleadoId_FK = e.id_empleados WHERE c.id_Compras = ?;";
+    try {
+        conn = conexion.getConnection();
+        pst = conn.prepareStatement(query);
+        pst.setInt(1, id);
+        System.out.println("Ejecutando consulta SQL...");
+        rs = pst.executeQuery();
 
-            while (rs.next()) {
-                Compras compras = new Compras();
-                compras.setNombre_producto(rs.getString("nombre_producto"));
-                compras.setCantidad_compra(rs.getInt("cantidad_compra"));
-                compras.setTotal(rs.getDouble("Total")); 
-                compras.setTotal_compra(rs.getDouble("total_compra")); 
-                compras.setProveedoraProducto(rs.getString("nombre_proveedor")); 
-                compras.setFecha_compra(rs.getString("fecha_compra"));
-                compras.setCompradora(rs.getString("nombreCompleto"));
-                listCompras.add(compras);
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+        while (rs.next()) {
+            System.out.println("Obteniendo datos de la base de datos...");
+            Compras compras = new Compras();
+            compras.setNombre_producto(rs.getString("nombre_producto"));
+            compras.setCantidad_compra(rs.getInt("cantidad_compra"));
+            compras.setPrecio_compra(rs.getDouble("precio_compra"));
+            compras.setTotal_compra(rs.getDouble("total_compra"));
+            compras.setProveedoraProducto(rs.getString("nombre_proveedor"));
+            compras.setFecha_compra(rs.getString("fecha_compra"));
+            compras.setCompradora(rs.getString("nombreCompleto"));
+            
+            // Imprimir todos los detalles de la compra
+            System.out.println("Detalle Compra: " + compras.toString());
+            
+            listCompras.add(compras);
         }
-        return listCompras;
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, e.getMessage());
     }
+    return listCompras;
+}
 }
 

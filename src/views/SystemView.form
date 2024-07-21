@@ -1232,14 +1232,14 @@
                                   <Component id="txt_Precio_Compra" min="-2" pref="165" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="30" max="32767" attributes="0"/>
+                          <EmptySpace pref="14" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="btn_Agregar_Compra" max="32767" attributes="0"/>
-                              <Component id="btn_Confirmar_Compra" pref="104" max="32767" attributes="0"/>
+                              <Component id="btn_Confirmar_Compra" max="32767" attributes="0"/>
                               <Component id="btnRemover_Compra" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btn_NuevaCompra" alignment="1" max="32767" attributes="0"/>
+                              <Component id="RemoverCompra" alignment="1" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="36" max="32767" attributes="0"/>
+                          <EmptySpace pref="20" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1284,7 +1284,7 @@
                                   <Component id="cmb_Proveedor_Compra" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txt_Pagar_Compra" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="btn_NuevaCompra" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="RemoverCompra" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -1572,7 +1572,7 @@
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="btn_NuevaCompra">
+                <Component class="javax.swing.JButton" name="RemoverCompra">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="66" red="0" type="rgb"/>
@@ -1583,8 +1583,11 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Nuevo"/>
+                    <Property name="text" type="java.lang.String" value="Remover compra"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RemoverCompraActionPerformed"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>

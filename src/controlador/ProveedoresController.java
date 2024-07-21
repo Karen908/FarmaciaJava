@@ -50,31 +50,38 @@ public class ProveedoresController implements ActionListener, MouseListener, Key
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == views.btn_registrar_Proveedor) {
-            //verificamos si los campos estan vacios 
-            if (views.txt_nombre_Proveedor.getText().equals("") || views.txt_descripcion_Proveedor.getText().equals("") || views.txt_telefono_Proveedor.getText().equals("")
-                    || views.txt_correo_Proveedor.getText().equals("") || views.txt_direccion_Proveedor.getText().equals("") || views.cmb_ciudad_Proveedor.getSelectedItem().equals("")) {
-                JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
+    if (e.getSource() == views.btn_registrar_Proveedor) {
+        // Verificamos si los campos están vacíos 
+        if (views.txt_nombre_Proveedor.getText().equals("") || 
+            views.txt_descripcion_Proveedor.getText().equals("") || 
+            views.txt_telefono_Proveedor.getText().equals("") ||
+            views.txt_correo_Proveedor.getText().equals("") || 
+            views.txt_direccion_Proveedor.getText().equals("") || 
+            views.cmb_ciudad_Proveedor.getSelectedItem().equals("")) {
+            
+            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
+        } else {
+            // Realizar inserción 
+            proveedores.setNombre(views.txt_nombre_Proveedor.getText().trim());
+            proveedores.setDescripcion(views.txt_descripcion_Proveedor.getText().trim());
+            proveedores.setTelefono(views.txt_telefono_Proveedor.getText().trim());
+            proveedores.setEmail(views.txt_correo_Proveedor.getText().trim());
+            proveedores.setDireccion(views.txt_direccion_Proveedor.getText().trim());
+            proveedores.setCiudad(views.cmb_ciudad_Proveedor.getSelectedItem().toString());
+            
+            // El ID del proveedor es autoincremental, no se necesita establecerlo manualmente
+            // proveedores.setId_proveedores(Integer.parseInt(views.txt_ProductoID.getText()));
+
+            if (proveedoresDao.registerProveedoresQuery(proveedores)) {
+                limpiarTabla();
+                limpiarCampos();
+                ListarTodosProveedores();
+                JOptionPane.showMessageDialog(null, "Proveedor registrado con éxito");
             } else {
-                //Realizar insercion 
-                proveedores.setNombre(views.txt_nombre_Proveedor.getText().trim());
-                proveedores.setDescripcion(views.txt_descripcion_Proveedor.getText().trim());
-                proveedores.setTelefono(views.txt_telefono_Proveedor.getText().trim());
-                proveedores.setEmail(views.txt_correo_Proveedor.getText().trim());
-                proveedores.setDireccion(views.txt_direccion_Proveedor.getText().trim());
-                proveedores.setCiudad(views.cmb_ciudad_Proveedor.getSelectedItem().toString());
-                proveedores.setId_proveedores(Integer.parseInt(views.txt_ProductoID.getText()));
-
-                if (proveedoresDao.registerProveedoresQuery(proveedores)) {
-                    limpiarTabla();
-                    limpiarCampos();
-                    ListarTodosProveedores();
-                    JOptionPane.showMessageDialog(null, "Proveedor registrado con exito");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error al registrar al proveedor");
-
-                }
-            }//Modificar proveedor
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error al registrar al proveedor");
+            }
+        }
+    //Modificar proveedor
         } else if (e.getSource() == views.btn_modificar_Proveedor) {
             if (views.txt_ID_Proveedor.getText().trim().equals("")) {
                 JOptionPane.showMessageDialog(null, "Selecciona una fila para continuar");

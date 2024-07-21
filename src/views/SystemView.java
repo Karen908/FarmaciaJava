@@ -152,7 +152,7 @@ public class SystemView extends javax.swing.JFrame {
         btnRemover_Compra = new javax.swing.JButton();
         btn_Agregar_Compra = new javax.swing.JButton();
         btn_Confirmar_Compra = new javax.swing.JButton();
-        btn_NuevaCompra = new javax.swing.JButton();
+        RemoverCompra = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         campras_Tabla = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
@@ -879,10 +879,15 @@ public class SystemView extends javax.swing.JFrame {
         btn_Confirmar_Compra.setForeground(new java.awt.Color(255, 255, 255));
         btn_Confirmar_Compra.setText("Comprar");
 
-        btn_NuevaCompra.setBackground(new java.awt.Color(0, 102, 102));
-        btn_NuevaCompra.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
-        btn_NuevaCompra.setForeground(new java.awt.Color(255, 255, 255));
-        btn_NuevaCompra.setText("Nuevo");
+        RemoverCompra.setBackground(new java.awt.Color(0, 102, 102));
+        RemoverCompra.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
+        RemoverCompra.setForeground(new java.awt.Color(255, 255, 255));
+        RemoverCompra.setText("Remover compra");
+        RemoverCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RemoverCompraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -925,13 +930,13 @@ public class SystemView extends javax.swing.JFrame {
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txt_Precio_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_Agregar_Compra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_Confirmar_Compra, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                    .addComponent(btn_Confirmar_Compra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRemover_Compra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_NuevaCompra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                    .addComponent(RemoverCompra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -967,7 +972,7 @@ public class SystemView extends javax.swing.JFrame {
                         .addComponent(cmb_Proveedor_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6)
                         .addComponent(txt_Pagar_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_NuevaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(RemoverCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5))
                 .addGap(273, 273, 273))
         );
@@ -2579,6 +2584,10 @@ public class SystemView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_cancelarCategoriaActionPerformed
 
+    private void RemoverCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoverCompraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RemoverCompraActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2616,6 +2625,7 @@ public class SystemView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Logo;
+    public javax.swing.JButton RemoverCompra;
     public javax.swing.JButton btnAgregar_venta;
     public javax.swing.JButton btnEliminar_venta;
     public javax.swing.JButton btnNueva_venta;
@@ -2626,7 +2636,6 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JButton btn_Confirmar_Compra;
     public javax.swing.JButton btn_Eliminar_Cliente;
     public javax.swing.JButton btn_Modificar_Cliente;
-    public javax.swing.JButton btn_NuevaCompra;
     public javax.swing.JButton btn_RegistroProducto;
     public javax.swing.JButton btn_Registro_Cliente;
     public javax.swing.JButton btn_actualizarP;

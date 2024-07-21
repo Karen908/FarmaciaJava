@@ -187,21 +187,19 @@ public class ProductosDao {
         }
         return productos;
     }
-    //Metodo para actualizar el stock
-
-    public boolean ActualizarStockQuery(int amount, int producto_id) {
-        String query = "update productos set cantidad =? where id_productos=?";
-        try {
-            conn = conexion.getConnection();
-            pst = conn.prepareStatement(query);
-            pst.setInt(1, amount);
-            pst.setInt(2, producto_id);
-            rs = pst.executeQuery();
-            pst.execute();
-            return true;
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            return false;
-        }
+    // Método para actualizar el stock
+public boolean ActualizarStockQuery(int amount, int producto_id) {
+    String query = "update productos set cantidad =? where id_productos=?";
+    try {
+        conn = conexion.getConnection();
+        pst = conn.prepareStatement(query);
+        pst.setInt(1, amount);
+        pst.setInt(2, producto_id);
+        pst.executeUpdate();  // Cambiado de executeQuery a executeUpdate
+        return true;
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, e.getMessage());
+        return false;
     }
+}
 }
