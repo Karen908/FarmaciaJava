@@ -56,105 +56,94 @@ public class ComprasController implements ActionListener, KeyListener, MouseList
         //Para la barra de navegacion de compras
         this.views.jLabelPurchases.addMouseListener(this);
         this.views.jLabelReports.addMouseListener(this);
-        
 
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == views.btn_Agregar_Compra) {
-    DynamicCMB proveedorCMB = (DynamicCMB) views.cmb_Proveedor_Compra.getSelectedItem();
-    int proveedorID = proveedorCMB.getId();
-    // Condicional para verificar si el usuario ya asignó un proveedor
-    if (getIdProveedor == 0) {
-        getIdProveedor = proveedorID;
-    } else {
-        if (getIdProveedor != proveedorID) {
-            JOptionPane.showMessageDialog(null, "No puede realizar una misma compra a varios proveedores");
+public void actionPerformed(ActionEvent e) {
+    if (e.getSource() == views.btn_Agregar_Compra) {
+        DynamicCMB proveedorCMB = (DynamicCMB) views.cmb_Proveedor_Compra.getSelectedItem();
+        if (proveedorCMB == null) {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione un proveedor válido.");
+            return;
+        }
+        int proveedorID = proveedorCMB.getId();
+        if (getIdProveedor == 0) {
+            getIdProveedor = proveedorID;
         } else {
-            // Verificar si los campos no están vacíos antes de la conversión
-            if (views.txt_Cantidad_Compra.getText().isEmpty()
-                    || views.txt_Precio_Compra.getText().isEmpty()
-                    || views.txt_ID_Compra.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos requeridos.");
-                return;
-            }
-            try {
-                int cantidad = Integer.parseInt(views.txt_Cantidad_Compra.getText());
-                double precio = Double.parseDouble(views.txt_Precio_Compra.getText());
-                int compraID = Integer.parseInt(views.txt_ID_Compra.getText());
-                String producto_nombre = views.txt_Nombre_Compra.getText();
-                String nombreProveedor = views.cmb_Proveedor_Compra.getSelectedItem().toString();
-
-                if (cantidad > 0) {
-                    DefaultTableModel temp = (DefaultTableModel) views.campras_Tabla.getModel();
-                    for (int i = 0; i < views.campras_Tabla.getRowCount(); i++) {
-                        if (views.campras_Tabla.getValueAt(i, 1).equals(views.txt_NombreProducto.getText())) {
-                            JOptionPane.showMessageDialog(null, "El producto ya está registrado en la tabla de compras");
-                            return;
-                        }
-                    }
-                    // Utilizamos un arreglo dinámico 
-                    ArrayList<Object> list = new ArrayList<>();
-                    item = 1;
-                    list.add(item);
-                    list.add(compraID);
-                    list.add(producto_nombre);
-                    list.add(cantidad);
-                    list.add(precio);
-                    list.add(cantidad * precio);
-                    list.add(nombreProveedor);
-
-                    // Creamos un objeto 
-                    Object[] obj = new Object[6];
-                    obj[0] = list.get(1);
-                    obj[1] = list.get(2);
-                    obj[2] = list.get(3);
-                    obj[3] = list.get(4);
-                    obj[4] = list.get(5);
-                    obj[5] = list.get(6);
-
-                    temp.addRow(obj);
-                    views.campras_Tabla.setModel(temp);
-                    limpiarCamposCompra();
-                    views.cmb_Proveedor_Compra.setEditable(false);
-                    views.txt_CodigoCompra.requestFocus();
-                    calcularCompra();
+            if (getIdProveedor != proveedorID) {
+                JOptionPane.showMessageDialog(null, "No puede realizar una misma compra a varios proveedores");
+            } else {
+                if (views.txt_Cantidad_Compra.getText().isEmpty()
+                        || views.txt_Precio_Compra.getText().isEmpty()
+                        || views.txt_ID_Compra.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos requeridos.");
+                    return;
                 }
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Error en la conversión de datos. Por favor, verifique los valores ingresados.");
+                try {
+                    int cantidad = Integer.parseInt(views.txt_Cantidad_Compra.getText());
+                    double precio = Double.parseDouble(views.txt_Precio_Compra.getText().replaceAll("[^\\d.]", ""));
+                    int compraID = Integer.parseInt(views.txt_ID_Compra.getText());
+                    String producto_nombre = views.txt_Nombre_Compra.getText();
+                    String nombreProveedor = views.cmb_Proveedor_Compra.getSelectedItem().toString();
+
+                    if (cantidad > 0) {
+                        DefaultTableModel temp = (DefaultTableModel) views.campras_Tabla.getModel();
+                        for (int i = 0; i < views.campras_Tabla.getRowCount(); i++) {
+                            if (views.campras_Tabla.getValueAt(i, 1).equals(views.txt_NombreProducto.getText())) {
+                                JOptionPane.showMessageDialog(null, "El producto ya está registrado en la tabla de compras");
+                                return;
+                            }
+                        }
+
+                        ArrayList<Object> list = new ArrayList<>();
+                        item = 1;
+                        list.add(item);
+                        list.add(compraID);
+                        list.add(producto_nombre);
+                        list.add(cantidad);
+                        list.add(precio);
+                        list.add(cantidad * precio);
+                        list.add(nombreProveedor);
+
+                        Object[] obj = new Object[7];
+                        obj[0] = list.get(1);
+                        obj[1] = list.get(2);
+                        obj[2] = list.get(3);
+                        obj[3] = list.get(4);
+                        obj[4] = list.get(5);
+                        obj[5] = list.get(6);
+
+                        temp.addRow(obj);
+                        views.campras_Tabla.setModel(temp);
+                        limpiarCamposCompra();
+                        views.cmb_Proveedor_Compra.setEditable(false);
+                        views.txt_CodigoCompra.requestFocus();
+                        calcularCompra();
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Error en la conversión de datos. Por favor, verifique los valores ingresados.");
+                }
             }
         }
-    }
-        } else if (e.getSource() == views.btn_Confirmar_Compra) {
-            InsertarCompra();
-        } else if (e.getSource() == views.btnRemover_Compra) {
-            model = (DefaultTableModel) views.campras_Tabla.getModel();
-            model.removeRow(views.campras_Tabla.getSelectedRow());
+    } else if (e.getSource() == views.btn_Confirmar_Compra) {
+        InsertarCompra();
+    } else if (e.getSource() == views.btnRemover_Compra) {
+        model = (DefaultTableModel) views.campras_Tabla.getModel();
+        int selectedRow = views.campras_Tabla.getSelectedRow();
+        if (selectedRow >= 0) {
+            model.removeRow(selectedRow);
             calcularCompra();
             views.txt_CodigoCompra.requestFocus();
-        } else if (e.getSource() == views.RemoverCompra) {
-            limpiarTablaCompra();
-            limpiarCamposCompra();
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione una fila para eliminar.");
         }
-    }
-    //Metodo para listar las compras realizadas 
-    public void listarTodasCompras() {
-    if (rol.equals("Administrador") || rol.equals("Auxiliar")) {
-        List<Compras> list = comprasDao.listarTodasComprasQuery();
-        model = (DefaultTableModel) views.tabla_TotalCompras.getModel();
-        model.setRowCount(0); // Limpiar la tabla antes de añadir nuevas filas
-        Object[] row = new Object[4];
-        for (int i = 0; i < list.size(); i++) {
-            row[0] = list.get(i).getId_Compras();
-            row[1] = list.get(i).getProveedoraProducto();
-            row[2] = list.get(i).getTotal_compra();
-            row[3] = list.get(i).getFecha_compra();
-            model.addRow(row);
-        }
-        views.tabla_TotalCompras.setModel(model);
+    } else if (e.getSource() == views.RemoverCompra) {
+        limpiarTablaCompra();
+        limpiarCamposCompra();
     }
 }
+
     @Override
     public void keyTyped(KeyEvent e) {
     }
@@ -213,61 +202,58 @@ public class ComprasController implements ActionListener, KeyListener, MouseList
     }
 
     // Método para insertar compra
-private void InsertarCompra() {
-    try {
-        String totalStr = views.txt_Pagar_Compra.getText();
-        if (totalStr.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "El campo de total está vacío.");
-            return;
-        }
-        double total = Double.parseDouble(totalStr);
+    private void InsertarCompra() {
+        try {
+            String totalStr = views.txt_Pagar_Compra.getText();
+            if (totalStr.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "El campo de total está vacío.");
+                return;
+            }
+            double total = Double.parseDouble(totalStr);
 
-        int empleadoID = id_empleados;
-        if (comprasDao.registrarCompraQuery(getIdProveedor, empleadoID, total)) {
-            int compraId = comprasDao.CampraID(); // Obtener el ID de la compra recién insertada
-            for (int i = 0; i < views.campras_Tabla.getRowCount(); i++) {
-                String productoIdStr = views.campras_Tabla.getValueAt(i, 0).toString();
-                String cantidadCompraStr = views.campras_Tabla.getValueAt(i, 2).toString();
-                String precioCompraStr = views.campras_Tabla.getValueAt(i, 3).toString();
+            int empleadoID = id_empleados;
+            if (comprasDao.registrarCompraQuery(getIdProveedor, empleadoID, total)) {
+                int compraId = comprasDao.CampraID(); // Obtener el ID de la compra recién insertada
+                for (int i = 0; i < views.campras_Tabla.getRowCount(); i++) {
+                    String productoIdStr = views.campras_Tabla.getValueAt(i, 0).toString();
+                    String cantidadCompraStr = views.campras_Tabla.getValueAt(i, 2).toString();
+                    String precioCompraStr = views.campras_Tabla.getValueAt(i, 3).toString();
 
-                if (productoIdStr.isEmpty() || cantidadCompraStr.isEmpty() || precioCompraStr.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Faltan valores en la fila " + (i + 1));
-                    return;
+                    if (productoIdStr.isEmpty() || cantidadCompraStr.isEmpty() || precioCompraStr.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Faltan valores en la fila " + (i + 1));
+                        return;
+                    }
+
+                    int productoId = Integer.parseInt(productoIdStr);
+                    int cantidadCompra = Integer.parseInt(cantidadCompraStr);
+                    double precioCompra = Double.parseDouble(precioCompraStr);
+                    double SubTotalCompra = precioCompra * cantidadCompra;
+
+                    comprasDao.registarDetallesCompraQuery(compraId, precioCompra, cantidadCompra, SubTotalCompra, productoId); // Pasar el ID de la compra aquí
+
+                    productos = productosDao.buscarCantidad_ID(productoId);
+                    int cantidad = productos.getCantidad() + cantidadCompra;
+                    productosDao.ActualizarStockQuery(cantidad, productoId);
                 }
 
-                int productoId = Integer.parseInt(productoIdStr);
-                int cantidadCompra = Integer.parseInt(cantidadCompraStr);
-                double precioCompra = Double.parseDouble(precioCompraStr);
-                double SubTotalCompra = precioCompra * cantidadCompra;
-
-                comprasDao.registarDetallesCompraQuery(compraId, precioCompra, cantidadCompra, SubTotalCompra, productoId); // Pasar el ID de la compra aquí
-
-                productos = productosDao.buscarCantidad_ID(productoId);
-                int cantidad = productos.getCantidad() + cantidadCompra;
-                productosDao.ActualizarStockQuery(cantidad, productoId);
+                if (views != null) {
+                    limpiarTablaCompra();
+                    JOptionPane.showMessageDialog(null, "Compra registrada con éxito");
+                    limpiarCamposCompra();
+                    Factura factura = new Factura(compraId);
+                    factura.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Hubo un problema al actualizar la vista.");
+                }
             }
-
-            if (views != null) {
-                limpiarTablaCompra();
-                JOptionPane.showMessageDialog(null, "Compra registrada con éxito");
-                limpiarCamposCompra();
-                Factura factura = new Factura(compraId);
-                factura.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "Hubo un problema al actualizar la vista.");
-            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese valores numéricos válidos. " + e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ocurrió un error: " + e.getMessage());
         }
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "Por favor, ingrese valores numéricos válidos. " + e.getMessage());
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Ocurrió un error: " + e.getMessage());
     }
-}
 
-
-
-
-    //Metodo para calcular compra 
+    // Método para calcular compra
     public void calcularCompra() {
         double total = 0.00;
         int numRow = views.campras_Tabla.getRowCount();
@@ -276,7 +262,6 @@ private void InsertarCompra() {
             total += Double.parseDouble(String.valueOf(views.campras_Tabla.getValueAt(i, 4)));
         }
         views.txtSubtotal_Compra.setText("" + total); // Actualizar el subtotal
-
         // o actualizar el campo txt_Pagar_Compra con el valor del subtotal
         views.txt_Pagar_Compra.setText("" + total);
     }
@@ -318,7 +303,8 @@ private void InsertarCompra() {
             listarTodasCompras();
         }
     }
-    // método para limpiar tabla
+
+    // Método para limpiar tabla
     public void limpiarTabla() {
         for (int i = 0; i < model.getRowCount(); i++) {
             model.removeRow(i);
@@ -341,5 +327,22 @@ private void InsertarCompra() {
     @Override
     public void mouseExited(MouseEvent e) {
     }
-   
+
+    //Metodo para listar las compras realizadas 
+    public void listarTodasCompras() {
+        if (rol.equals("Administrador") || rol.equals("Auxiliar")) {
+            List<Compras> list = comprasDao.listarTodasComprasQuery();
+            model = (DefaultTableModel) views.tabla_TotalCompras.getModel();
+            model.setRowCount(0); // Limpiar la tabla antes de añadir nuevas filas
+            Object[] row = new Object[4];
+            for (int i = 0; i < list.size(); i++) {
+                row[0] = list.get(i).getId_Compras();
+                row[1] = list.get(i).getProveedoraProducto();
+                row[2] = list.get(i).getTotal_compra();
+                row[3] = list.get(i).getFecha_compra();
+                model.addRow(row);
+            }
+            views.tabla_TotalCompras.setModel(model);
+        }
+    }
 }

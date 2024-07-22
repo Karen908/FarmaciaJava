@@ -1,24 +1,27 @@
-
 package views;
 
+import java.awt.Graphics;
+import java.awt.PrintJob;
+import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import model.Compras;
 import model.ComprasDao;
+
 public class Factura extends javax.swing.JFrame {
+
     // Instanciamos
-    Compras compras = new Compras();
     ComprasDao comprasDao = new ComprasDao();
     DefaultTableModel model = new DefaultTableModel();
-    
- public Factura(int id) {
+
+    public Factura(int id) {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Factura de compra");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        txt_invoice.setText("" + id);
+        txt_invoice.setText(String.valueOf(id));
         listTodosDetallesCompra(id);
         calcularCompra();
     }
@@ -30,9 +33,6 @@ public class Factura extends javax.swing.JFrame {
 
         Object[] row = new Object[7];
         for (Compras compra : list) {
-            // Verificar que los datos se obtienen correctamente
-            System.out.println("Detalle Compra: " + compra.toString());
-            
             row[0] = compra.getNombre_producto();
             row[1] = compra.getCantidad_compra();
             row[2] = compra.getPrecio_compra();
@@ -43,7 +43,6 @@ public class Factura extends javax.swing.JFrame {
 
             model.addRow(row);
         }
-        // Asegurarse de que la tabla se actualice con el modelo
         tabla_DetallesCompra.setModel(model);
     }
 
@@ -57,9 +56,6 @@ public class Factura extends javax.swing.JFrame {
         }
         txt_Total.setText("" + total); // Actualizar el subtotal
     }
-
-
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -180,6 +176,11 @@ public class Factura extends javax.swing.JFrame {
         btn_imprimirCompra.setFont(new java.awt.Font("Javanese Text", 1, 18)); // NOI18N
         btn_imprimirCompra.setForeground(new java.awt.Color(255, 255, 255));
         btn_imprimirCompra.setText("Imprimir");
+        btn_imprimirCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_imprimirCompraActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn_imprimirCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 540, -1, -1));
 
         pack();
@@ -193,11 +194,23 @@ public class Factura extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_TotalActionPerformed
 
+    private void btn_imprimirCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_imprimirCompraActionPerformed
+        /*este nos permitira imprimir la factura
+        El Toolkit devuelve un objeto deacuerdo a la plataforma que se este ejecutando, en este caso windows
+        Para imprimir utilizamos el getPrintJob */
+        Toolkit tk = form_Print.getToolkit();
+        PrintJob pj = tk.getPrintJob(this, null, null);
+        Graphics graphics = pj.getGraphics();
+        form_Print.print(graphics);
+        graphics.dispose();
+        pj.end();
+    }//GEN-LAST:event_btn_imprimirCompraActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
